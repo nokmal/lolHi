@@ -14,10 +14,10 @@ INSERT INTO article
 SET regDate=NOW(),
 `updateDate`=NOW(),
 title='제목1',
-`body`='내용1',
+`body`='내용1';
 
 INSERT INTO article
 SET regDate=NOW(),
 `updateDate`=NOW(),
 title='제목2',
-`body`='내용2',
+`body`='내용2';
