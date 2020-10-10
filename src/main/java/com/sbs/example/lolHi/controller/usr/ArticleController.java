@@ -33,6 +33,7 @@ public class ArticleController {
 		
 		return "usr/article/detail";
 	}
+	
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
@@ -41,4 +42,11 @@ public class ArticleController {
 		return String.format("<script> alert('%d번 글이 삭제되었습니다.'); location.replace('/usr/article/list');</script>", id);
 	}
 	
+	@RequestMapping("/usr/article/doModify")
+	@ResponseBody
+	public String doModify(int id, String title, String body) {
+		articleService.modifyArticle(id, title, body);
+		
+		return String.format("<script> alert('%d번 글이 수정되었습니다.'); location.replace('/usr/article/detail?id=%d');</script>", id, id);
+	}
 }
