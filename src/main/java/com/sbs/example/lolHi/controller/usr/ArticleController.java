@@ -33,11 +33,12 @@ public class ArticleController {
 		
 		return "usr/article/detail";
 	}
+	@RequestMapping("/usr/article/doDelete")
+	@ResponseBody
+	public String doDelete(int id) {
+		articleService.deleteArticleById(id);
+		
+		return String.format("<script> alert('%d번 글이 삭제되었습니다.'); location.replace('/usr/article/list');</script>", id);
+	}
 	
-	
-//	@RequestMapping("/usr/home/plus")
-//	@ResponseBody
-//	public int showPlus(int a, int b) {
-//		return a+b;
-//	}
 }

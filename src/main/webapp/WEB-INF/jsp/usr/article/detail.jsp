@@ -13,5 +13,6 @@
 	<div>번호: ${article.id}</div>
 	<div>제목: ${article.title}</div>
 	<div>내용: ${article.body}</div>
+
 </body>
 </html>
