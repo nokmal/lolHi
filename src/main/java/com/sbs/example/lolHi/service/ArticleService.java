@@ -43,7 +43,4 @@ public class ArticleService {
 		return id;
 	}
 
-	public List<Article> wirteArticle() {
-		return articleDao.wirteArticle();
-	}
 }

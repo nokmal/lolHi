@@ -21,6 +21,4 @@ public interface ArticleDao {
 
 	void writeArticle(@RequestParam Map<String, Object> param);
 
-	List<Article> wirteArticle();
-	
 }

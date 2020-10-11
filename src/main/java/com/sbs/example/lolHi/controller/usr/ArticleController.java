@@ -63,10 +63,12 @@ public class ArticleController {
 	
 
 	@RequestMapping("/usr/article/write")
-	public String write(Model model) {
-		List<Article> article = articleService.wirteArticle();
-		model.addAttribute("article", article);
-		
-		return "usr/article/wirte";
+	public String write() {
+		return "usr/article/write";
+	}
+	
+	@RequestMapping("/usr/article/modify")
+	public String modify() {
+		return "usr/article/modify";
 	}
 }
