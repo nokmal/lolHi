@@ -16,5 +16,7 @@ public interface ArticleDao {
 	void deleteArticleById(@Param("id") int id);
 	
 	void modifyArticle(@Param("id") int id, @Param("title")String title, @Param("body") String body);
+
+	void writeArticle(@Param("title") String title, @Param("body")String body);
 	
 }

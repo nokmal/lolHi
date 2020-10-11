@@ -28,4 +28,9 @@ public class ArticleService {
 	public void modifyArticle(int id, String title, String body) {
 		articleDao.modifyArticle(id, title, body);		
 	}
+
+	public void doWriteArticle(String title, String body) {
+		articleDao.writeArticle(title, body);
+		
+	}
 }

@@ -29,4 +29,14 @@
 		WHERE id = #{id}
 	</update>
 	
+	<insert id="writeArticle">
+		INSERT INTO article
+		<set>
+			regDate = NOW(),
+			updateDate = NOW(),
+			<if test="title != null">title=#{title},</if>
+			<if test="body != null">`body`=#{body},</if>
+		</set> 
+	</insert>
+	
 </mapper>

@@ -49,4 +49,14 @@ public class ArticleController {
 		
 		return String.format("<script> alert('%d번 글이 수정되었습니다.'); location.replace('/usr/article/detail?id=%d');</script>", id, id);
 	}
+	
+	
+	@RequestMapping("/usr/article/doWrite")
+	@ResponseBody
+	public String doWrite(String title, String body) {
+		articleService.doWriteArticle(title, body);
+		
+		return String.format("<script> alert('새 게시물이 작성되었습니다.'); location.replace('/usr/article/list');</script>");
+	}
+	
 }
