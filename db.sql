@@ -13,17 +13,20 @@ CREATE TABLE article (
 INSERT INTO article
 SET regDate=NOW(),
 `updateDate`=NOW(),
+`page`=1,
 title='제목1',
 `body`='내용1';
 
 INSERT INTO article
 SET regDate=NOW(),
 `updateDate`=NOW(),
+`page`=1,
 title='제목2',
 `body`='내용2';
 
 INSERT INTO article
 SET regDate=NOW(),
 `updateDate`=NOW(),
+`page`=1,
 title='제목3',
 `body`='내용3';

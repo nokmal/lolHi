@@ -20,8 +20,8 @@ public class ArticleController {
 	private ArticleService articleService;
 	
 	@RequestMapping("/usr/article/list")
-	public String showList(Model model) {
-		List<Article> articles = articleService.getArticles();
+	public String showList(Model model, String page) {
+		List<Article> articles = articleService.getArticles(page);
 		model.addAttribute("articles", articles);
 		
 		return "usr/article/list";
@@ -68,7 +68,11 @@ public class ArticleController {
 	}
 	
 	@RequestMapping("/usr/article/modify")
-	public String modify() {
+	public String modify(Model model, int id) {
+		Article article = articleService.getArticleById(id);
+
+		model.addAttribute("article", article);
+
 		return "usr/article/modify";
 	}
 }

@@ -12,10 +12,13 @@
 	<hr/>
 	<div>
 	<form action="doModify" method="post">
-		게시글 번호: <input type="text" name="id" /><br />
-		제목 : <input type="text" name="title" /><br />
-		내용 : <input type="text" name="body" /><br />		
-		<input type="submit" value="등록" />
+	<input type="hidden" name="id" value="${article.id}" />
+		<div>번호 : ${article.id}</div>
+		<div>작성날짜 : ${article.regDate}</div>
+		<div>수정날짜 : ${article.updateDate}</div>
+		제목 : <input type="text" maxlength="30" value="${article.title}" name="title" /><br />
+		내용 : <input type="text" maxlength="300" value="${article.body}" name="body" /><br />		
+		<input type="submit" value="수정" />
 		</form>		
 	</div>
 
