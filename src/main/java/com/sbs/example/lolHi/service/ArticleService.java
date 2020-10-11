@@ -1,9 +1,12 @@
 package com.sbs.example.lolHi.service;
 
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.example.lolHi.dao.ArticleDao;
 import com.sbs.example.lolHi.dto.Article;
@@ -29,8 +32,18 @@ public class ArticleService {
 		articleDao.modifyArticle(id, title, body);		
 	}
 
-	public void doWriteArticle(String title, String body) {
-		articleDao.writeArticle(title, body);
+	public int doWriteArticle(@RequestParam Map<String, Object> param) {
+		articleDao.writeArticle(param);
 		
+//		util로 형변환
+//		BigInteger bigIntId = (BigInteger)param.get("id");
+//		int id = bigIntId.intValue();
+		int id = Util.getAsInt(param.get("id"));
+		
+		return id;
+	}
+
+	public List<Article> wirteArticle() {
+		return articleDao.wirteArticle();
 	}
 }

@@ -2,11 +2,13 @@ package com.sbs.example.lolHi.controller.usr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.example.lolHi.dto.Article;
@@ -53,10 +55,18 @@ public class ArticleController {
 	
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
-	public String doWrite(String title, String body) {
-		articleService.doWriteArticle(title, body);
+	public String doWrite(@RequestParam Map<String, Object> param) {
+		int id = articleService.doWriteArticle(param);
 		
-		return String.format("<script> alert('새 게시물이 작성되었습니다.'); location.replace('/usr/article/list');</script>");
+		return String.format("<script> alert('%d번 글이 작성되었습니다.'); location.replace('/usr/article/list');</script>", id);
 	}
 	
+
+	@RequestMapping("/usr/article/write")
+	public String write(Model model) {
+		List<Article> article = articleService.wirteArticle();
+		model.addAttribute("article", article);
+		
+		return "usr/article/wirte";
+	}
 }
