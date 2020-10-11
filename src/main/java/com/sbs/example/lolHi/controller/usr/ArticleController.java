@@ -20,8 +20,8 @@ public class ArticleController {
 	private ArticleService articleService;
 	
 	@RequestMapping("/usr/article/list")
-	public String showList(Model model, String page) {
-		List<Article> articles = articleService.getArticles(page);
+	public String showList(Model model, @RequestParam Map<String, Object> param) {
+		List<Article> articles = articleService.getArticles(param);
 		model.addAttribute("articles", articles);
 		
 		return "usr/article/list";

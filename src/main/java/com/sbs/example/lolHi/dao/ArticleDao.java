@@ -11,7 +11,7 @@ import com.sbs.example.lolHi.dto.Article;
 
 @Mapper
 public interface ArticleDao {
-	List<Article> getArticles(@Param("page") String page);
+	List<Article> getArticles(Map<String, Object> param);
 
 	Article getArticleById(@Param("id") int id);
 
