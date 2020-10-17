@@ -20,6 +20,9 @@
 		내용 : <input type="text" maxlength="300" value="${article.body}" name="body" /><br />		
 		<input type="submit" value="수정" />
 		</form>		
+		<div>
+		<a href="list">리스트</a>
+	</div>
 	</div>
 
 </body>

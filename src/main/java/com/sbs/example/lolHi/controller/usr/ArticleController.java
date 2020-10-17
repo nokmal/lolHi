@@ -36,6 +36,14 @@ public class ArticleController {
 		return "usr/article/detail";
 	}
 	
+	@RequestMapping("/usr/article/detail2") 
+	@ResponseBody
+	public Article showDetail2(Model model, int id) {
+		Article article = articleService.getArticleById(id);
+		
+		return article;
+	}
+	
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {

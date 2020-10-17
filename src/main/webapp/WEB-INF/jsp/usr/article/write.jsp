@@ -17,6 +17,8 @@
 		<input type="submit" value="등록" />
 		</form>		
 	</div>
-
+	<div>
+		<a href="list">리스트</a>
+	</div>
 </body>
 </html>
