@@ -33,7 +33,7 @@
 		WHERE id = #{id}
 	</update>
 	
-	<insert id="writeArticle" useGeneratedKeys="true" keyProperty="">
+	<insert id="writeArticle" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO article
 		<set>
 			regDate = NOW(),

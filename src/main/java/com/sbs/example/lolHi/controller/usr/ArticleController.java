@@ -22,6 +22,7 @@ public class ArticleController {
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model, @RequestParam Map<String, Object> param) {
 		List<Article> articles = articleService.getArticles(param);
+		
 		model.addAttribute("articles", articles);
 		
 		return "usr/article/list";
