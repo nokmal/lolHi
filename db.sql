@@ -1,4 +1,4 @@
-DROP DATABASE IF exsist lolHi;
+DROP DATABASE IF EXISTS lolHi;
 CREATE DATABASE lolHi;
 USE lolHi;
 
@@ -11,12 +11,12 @@ CREATE TABLE article (
 );
 
 CREATE TABLE `member` (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,    
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
-    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    `name` CHAR(100) NOT NULL,
-    loginId CHAR(10) NOT NULL,
-    loginPw CHAR(10) NOT NULL
+    `name` CHAR(30) NOT NULL,
+    loginId CHAR(30) NOT NULL,
+    loginPw CHAR(80) NOT NULL
 );
 
 INSERT INTO `member`
@@ -44,3 +44,4 @@ SET regDate=NOW(),
 `updateDate`=NOW(),
 title='제목3',
 `body`='내용3';
+
