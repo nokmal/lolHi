@@ -23,9 +23,9 @@ public class MemberService {
 
 	public int doJoinMember(Map<String, Object> param) {
 		memberDao.joinMember(param);
-		
+
 		int id = Util.getAsInt(param.get("id"));
-		
+
 		return id;
 	}
 
@@ -42,5 +42,9 @@ public class MemberService {
 		}
 
 		return false;
+	}
+
+	public Member getMemberByLoginId(String loginId) {
+		return memberDao.getMemberByLoginId(loginId);
 	}
 }
