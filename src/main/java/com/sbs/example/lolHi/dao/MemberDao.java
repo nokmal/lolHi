@@ -13,4 +13,10 @@ import com.sbs.example.lolHi.dto.Member;
 @Mapper
 public interface MemberDao {
 	void joinMember(@RequestParam Map<String, Object> param);
+
+	void loginMember(String loginId, String loginPw);
+
+	Member getMemberByLoginId(@Param("loginId") String loginId);
+
+	List<Member> getMember(String loginId, String loginPw);
 }

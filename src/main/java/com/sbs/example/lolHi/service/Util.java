@@ -1,6 +1,7 @@
 package com.sbs.example.lolHi.service;
 
 import java.math.BigInteger;
+import java.util.Map;
 
 public class Util {
 	public static int getAsInt(Object object) {
@@ -21,5 +22,13 @@ public class Util {
 			return (int)object;
 		}
 		return defaultvalue;
+	}
+
+	public static String getAsStr(Object object, String defaultValue) {
+		if ( object instanceof String ) {
+			return (String)(object);
+		}
+
+		return object.toString();
 	}
 }

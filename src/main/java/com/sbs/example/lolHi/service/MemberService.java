@@ -17,7 +17,30 @@ public class MemberService {
 	@Autowired
 	private MemberDao memberDao;
 
-	public void doJoinMember(@RequestParam Map<String, Object> param) {
+	public List<Member> getMember(String loginId, String loginPw) {
+		return memberDao.getMember(loginId, loginPw);
+	}
+
+	public int doJoinMember(Map<String, Object> param) {
 		memberDao.joinMember(param);
+		
+		int id = Util.getAsInt(param.get("id"));
+		
+		return id;
+	}
+
+	public void doLoginMember(String loginId, String loginPw) {
+		memberDao.loginMember(loginId, loginPw);
+
+	}
+
+	public boolean isJoinAvaiableLoginId(String loginId) {
+		Member member = memberDao.getMemberByLoginId(loginId);
+
+		if (member == null) {
+			return true;
+		}
+
+		return false;
 	}
 }

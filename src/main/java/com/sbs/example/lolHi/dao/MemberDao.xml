@@ -12,6 +12,24 @@
 		<if test="loginId != null">loginId=#{loginId},</if>
 		<if test="loginPw != null">loginPw=#{loginPw},</if>
 		</set>
-	</insert>	
+	</insert>
+	
+	<select id="getMember" resultType="Member">
+		SELECT *
+		FROM `member`
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getMemberByLoginId" resultType="Member">
+		SELECT *
+		FROM `member`
+		WHERE loginId = #{loginId}
+	</select>
+	
+	<select id="loginMember" resultType="Member">
+		SELECT *
+		FROM `member`
+		WHERE loginId = #{loginId}
+	</select>
 	
 </mapper>
