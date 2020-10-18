@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,23 +45,35 @@ public class MemberController {
 
 		int id = memberService.doJoinMember(param);
 
-		return String.format("<script> alert('%d번 회원이 생성되였습니다.'); location.replace('/usr/article/list'); </script>",
+		return String.format("<script> alert('%d번 회원이 가입하였습니다.'); location.replace('/usr/article/list'); </script>",
 				id);		
 	}
 	
 	@RequestMapping("/usr/member/login")
-	public String login(Model model, String loginId) {
+	public String showLogin(Model model, String loginId) {
 		
 		return "usr/member/login";
 	}
 	
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(String loginId, String loginPw) {
-		memberService.doLoginMember(loginId, loginPw);
-		List<Member> member = memberService.getMember(loginId, loginPw);
+	public String doLogin(String loginId, String loginPw, HttpSession session) {
+		if (loginId.length() == 0) {
+			return String.format("<script> alert('로그인 아이디를 입력해주세요.'); history.back; </script>");	
+		}
 		
-		
-		return String.format("<script> alert('%s님이 접속하였습니다.'); location.replace('/usr/article/list');</script>", loginId);
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		if (member == null) {
+			return String.format("<script> alert('%s은(는) 존재하지 않는 아이디 입니다.'); history.back(); </script>", loginId);
+		}
+
+		if (member.getLoginPw().equals(loginPw) == false) {
+			return String.format("<script> alert('비밀번호를 정확히 입력해주세요.'); history.back(); </script>");
+		}
+
+		session.setAttribute("loginedMemberId", member.getId());
+		return String.format("<script> alert('%s님이 접속하였습니다.'); location.replace('/usr/article/list'); </script>",
+				loginId);	
 	}
 }
