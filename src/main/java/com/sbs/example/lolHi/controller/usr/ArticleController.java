@@ -18,41 +18,45 @@ import com.sbs.example.lolHi.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
-	
+
 	@RequestMapping("/usr/article/list")
 	public String showList(Model model, @RequestParam Map<String, Object> param) {
 		List<Article> articles = articleService.getArticles(param);
 		
+		int totalCount = articleService.getTotalCount();
+
+		model.addAttribute("totalCount", totalCount);
+
 		model.addAttribute("articles", articles);
-		
+
 		return "usr/article/list";
 	}
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
 		Article article = articleService.getArticleById(id);
-		
+
 		model.addAttribute("article", article);
-		
+
 		return "usr/article/detail";
 	}
-	
-	@RequestMapping("/usr/article/detail2") 
+
+	@RequestMapping("/usr/article/detail2")
 	@ResponseBody
 	public Article showDetail2(Model model, int id) {
 		Article article = articleService.getArticleById(id);
-		
+
 		return article;
 	}
-	
+
 	@RequestMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
 		articleService.deleteArticleById(id);
-		
+
 		return String.format("<script> alert('%d번 글이 삭제되었습니다.'); location.replace('/usr/article/list');</script>", id);
 	}
-	
+
 	@RequestMapping("/usr/article/modify")
 	public String modify(Model model, int id) {
 		Article article = articleService.getArticleById(id);
@@ -61,25 +65,26 @@ public class ArticleController {
 
 		return "usr/article/modify";
 	}
-	
+
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
 	public String doModify(int id, String title, String body) {
 		articleService.modifyArticle(id, title, body);
-		
-		return String.format("<script> alert('%d번 글이 수정되었습니다.'); location.replace('/usr/article/detail?id=%d');</script>", id, id);
+
+		return String.format(
+				"<script> alert('%d번 글이 수정되었습니다.'); location.replace('/usr/article/detail?id=%d');</script>", id, id);
 	}
 
 	@RequestMapping("/usr/article/write")
 	public String write() {
 		return "usr/article/write";
 	}
-	
+
 	@RequestMapping("/usr/article/doWrite")
 	@ResponseBody
 	public String doWrite(@RequestParam Map<String, Object> param) {
 		int id = articleService.doWriteArticle(param);
-		
+
 		return String.format("<script> alert('%d번 글이 작성되었습니다.'); location.replace('/usr/article/list');</script>", id);
 	}
 }
