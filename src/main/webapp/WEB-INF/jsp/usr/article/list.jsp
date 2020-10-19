@@ -5,6 +5,7 @@
 <%@ include file="../part/head.jspf"%>
 <hr />
 <div>
+	<div>총 게시물 수 : ${totalCount}</div>
 	<c:forEach items="${articles}" var="article">
 		번호: <a href="detail?id=${article.id}">${article.id}</a>
 		<br />
