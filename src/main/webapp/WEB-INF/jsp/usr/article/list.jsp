@@ -22,7 +22,12 @@
 			href="doDelete?id=${article.id}">삭제</a>
 		<a href="modify?id=${article.id}">수정</a>
 		<hr />
-
+		<h2>페이지</h2>
+		<div>
+			<c:forEach var="i" begin="1" end="${totalPage}">
+				<a href="?page=${i}">${i}</a>
+			</c:forEach>
+		</div>
 	</c:forEach>
 </div>
 <%@ include file="../part/foot.jspf"%>
