@@ -4,6 +4,11 @@
 <c:set var="title" value="게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
 <hr />
+<style>
+.selected {
+	color: red;
+}
+</style>
 <div>
 	<div>총 게시물 수 : ${totalCount}</div>
 	<c:forEach items="${articles}" var="article">
@@ -22,12 +27,34 @@
 			href="doDelete?id=${article.id}">삭제</a>
 		<a href="modify?id=${article.id}">수정</a>
 		<hr />
-		<h2>페이지</h2>
-		<div>
-			<c:forEach var="i" begin="1" end="${totalPage}">
-				<a href="?page=${i}">${i}</a>
-			</c:forEach>
 		</div>
 	</c:forEach>
 </div>
+<h2>페이지</h2>
+		<div>
+			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+		<c:set var="goFirstBtnNeedToShow"
+			value="${page > pageMenuArmSize + 1}" />
+
+		<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+		<c:set var="goLastBtnNeedToShow" value="true" />
+
+		<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+		<c:if test="${goFirstBtnNeedToShow}">
+			<a href="?page=1">◀</a>
+		</c:if>
+
+		<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
+			<c:set var="className" value="${i == page ? 'selected' : ''}" />
+			<a class="${className}" href="?page=${i}">${i}</a>
+
+			<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
+			<c:if test="${i == totalPage}">
+				<c:set var="goLastBtnNeedToShow" value="false" />
+			</c:if>
+		</c:forEach>
+		<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+		<c:if test="${goLastBtnNeedToShow}">
+			<a href="?page=${totalPage}">▶</a>
+		</c:if>
 <%@ include file="../part/foot.jspf"%>
