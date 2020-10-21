@@ -76,4 +76,13 @@ public class MemberController {
 		return String.format("<script> alert('%s님이 접속하였습니다.'); location.replace('/usr/article/list'); </script>",
 				loginId);	
 	}
+	
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public String doLogout(HttpSession session) {
+		session.removeAttribute("loginedMemberId");
+		
+		return String.format("<script> alert('로그아웃 되었습니다.'); location.replace('/usr/article/list');</script>");
+	}
+	
 }
