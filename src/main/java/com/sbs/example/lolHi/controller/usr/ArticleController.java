@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,7 +96,16 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/write")
-	public String write() {
+	@ResponseBody
+	public String showWrite(HttpSession session) {
+		int loginedMemberId = 0;
+		
+		if (session.getAttribute("loginedMemberId") != null) {
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		}
+		if (loginedMemberId == 0) {
+			return String.format("<script> alert('로그인 후 이용해주세요.'); location.replace('/usr/member/login');</script>");
+		}
 		return "usr/article/write";
 	}
 
