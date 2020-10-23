@@ -25,64 +25,75 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@RequestMapping("/usr/member/join")
-	public String join() {
+	public String showJoin() {
 		return "usr/member/join"; 
 	}
 	
 	@RequestMapping("/usr/member/doJoin")
-	@ResponseBody
-	public String doJoin(@RequestParam Map<String, Object> param) {
+	public String doJoin(@RequestParam Map<String, Object> param, Model model) {
 		String loginId = Util.getAsStr(param.get("loginId"), "");
 		if (loginId.length() == 0) {
-			return String.format("<script> alert('아이디를 입력해주세요.'); history.back;</script>", loginId);
+			model.addAttribute("msg", String.format("로그인 아이디를 입력해주세요."));
+			model.addAttribute("historyBack", true);		
+			return "common/redirect"; 
 		}
 		
 		boolean isJoinAvaiableLoginId = memberService.isJoinAvaiableLoginId(loginId);
 		
 		if ( isJoinAvaiableLoginId == false ) {
-			return String.format("<script> alert('%s(은)는 이미 사용중인 아이디 입니다.'); history.back(); </script>", loginId);
+			model.addAttribute("msg", String.format("%s는 이미 사용 중인 아이디입니다.", loginId));
+			model.addAttribute("historyBack", true);		
+			return "common/redirect"; 
 		}
 
 		int id = memberService.doJoinMember(param);
 
-		return String.format("<script> alert('%d번 회원이 가입하였습니다.'); location.replace('/usr/article/list'); </script>",
-				id);		
+		model.addAttribute("msg", String.format("환영합니다!"));
+		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		return "common/redirect"; 		
 	}
 	
 	@RequestMapping("/usr/member/login")
-	public String showLogin(Model model, String loginId) {
-		
+	public String showLogin(Model model, String loginId) {		
 		return "usr/member/login";
 	}
 	
 	@RequestMapping("/usr/member/doLogin")
-	@ResponseBody
-	public String doLogin(String loginId, String loginPw, HttpSession session) {
+	public String doLogin(String loginId, String loginPw, HttpSession session, Model model) {
 		if (loginId.length() == 0) {
-			return String.format("<script> alert('로그인 아이디를 입력해주세요.'); history.back; </script>");	
+			model.addAttribute("msg", String.format("로그인 아이디를 입력해주세요."));
+			model.addAttribute("historyBack", true);		
+			return "common/redirect"; 	
 		}
 		
 		Member member = memberService.getMemberByLoginId(loginId);
 
 		if (member == null) {
-			return String.format("<script> alert('%s은(는) 존재하지 않는 아이디 입니다.'); history.back(); </script>", loginId);
+			model.addAttribute("msg", String.format("%s는 존재하지 않는 아이디입니다.", loginId));
+			model.addAttribute("historyBack", true);		
+			return "common/redirect"; 
 		}
 
 		if (member.getLoginPw().equals(loginPw) == false) {
-			return String.format("<script> alert('비밀번호를 정확히 입력해주세요.'); history.back(); </script>");
+			model.addAttribute("msg", String.format("비밀번호를 정확하게 입력해주세요."));
+			model.addAttribute("historyBack", true);		
+			return "common/redirect"; 	
 		}
 
 		session.setAttribute("loginedMemberId", member.getId());
-		return String.format("<script> alert('%s님이 접속하였습니다.'); location.replace('/usr/article/list'); </script>",
-				loginId);	
+		
+		model.addAttribute("msg", String.format("%s님 환영합니다.", member.getName()));
+		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		return "common/redirect";
 	}
 	
 	@RequestMapping("/usr/member/doLogout")
-	@ResponseBody
-	public String doLogout(HttpSession session) {
+	public String doLogout(HttpSession session, Model model) {
 		session.removeAttribute("loginedMemberId");
 		
-		return String.format("<script> alert('로그아웃 되었습니다.'); location.replace('/usr/article/list');</script>");
+		model.addAttribute("msg", String.format("로그아웃 되었습니다."));
+		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		return "common/redirect";
 	}
 	
 }
