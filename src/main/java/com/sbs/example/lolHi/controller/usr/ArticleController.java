@@ -26,16 +26,16 @@ public class ArticleController {
 	public String showList(Model model, @RequestParam Map<String, Object> param) {
 		int totalCount = articleService.getTotalCount();
 		int itemsCountInAPage = 10;
-		int totalPage = (int)Math.ceil(totalCount / (double)itemsCountInAPage);
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
 
 		int pageMenuArmSize = 5;
 		int page = Util.getAsInt(param.get("page"), 1);
 		int pageMenuStart = page - pageMenuArmSize;
-		if ( pageMenuStart < 1 ) {
+		if (pageMenuStart < 1) {
 			pageMenuStart = 1;
 		}
 		int pageMenuEnd = page + pageMenuArmSize;
-		if ( pageMenuEnd > totalPage ) {
+		if (pageMenuEnd > totalPage) {
 			pageMenuEnd = totalPage;
 		}
 		param.put("itemsCountInAPage", itemsCountInAPage);
@@ -76,23 +76,21 @@ public class ArticleController {
 			model.addAttribute("replaceUri", "/usr/member/login");
 			return "common/redirect";
 		}
-		
+
 		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		
-		
-		
+
 		articleService.deleteArticleById(id);
-		
+
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));		
+		model.addAttribute("replaceUri", String.format("/usr/article/list"));
 		return "common/redirect";
 	}
 
 	@RequestMapping("/usr/article/modify")
-	public String modify(HttpSession session, Model model, int id) {
+	public String showModify(HttpSession session, Model model, int id) {
 		Article article = articleService.getArticleById(id);
 		int loginedMemberId = 0;
-		
+
 		if (session.getAttribute("loginedMemberId") != null) {
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 		}
@@ -108,35 +106,58 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doModify")
-	public String doModify(int id, String title, String body, Model model) {
+	public String doModify(HttpSession session, int id, String title, String body, Model model) {
 		articleService.modifyArticle(id, title, body);
-		
-		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));		
-		return "common/redirect"; 
-	}
-
-	@RequestMapping("/usr/article/write")
-	public String showWrite(HttpSession session, Model model) {
 		int loginedMemberId = 0;
-		
+
 		if (session.getAttribute("loginedMemberId") != null) {
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
 		}
 		if (loginedMemberId == 0) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");		
-			return "common/redirect"; 
+			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
+		}
+
+		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
+		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+		return "common/redirect";
+	}
+
+	@RequestMapping("/usr/article/write")
+	public String showWrite(HttpSession session, Model model) {
+		int loginedMemberId = 0;
+
+		if (session.getAttribute("loginedMemberId") != null) {
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		}
+		if (loginedMemberId == 0) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
 		}
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/doWrite")
-	public String doWrite(@RequestParam Map<String, Object> param, Model model) {
+	public String doWrite(HttpSession session, @RequestParam Map<String, Object> param, Model model) {
+		int loginedMemberId = 0;
+
+		if (session.getAttribute("loginedMemberId") != null) {
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		}
+
+		if (loginedMemberId == 0) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
+		}
+		
+		param.put("memberId", loginedMemberId);
 		int id = articleService.doWriteArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되었습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));		
-		return "common/redirect"; 
+		model.addAttribute("replaceUri", String.format("/usr/article/detail?id=%d", id));
+		return "common/redirect";
 	}
 }
