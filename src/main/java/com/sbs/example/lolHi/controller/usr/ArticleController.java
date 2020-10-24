@@ -70,7 +70,17 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(int id, Model model) {
+	public String doDelete(HttpSession session, int id, Model model) {
+		if (session.getAttribute("loginedMemberId") == null) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
+		}
+		
+		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		
+		
+		
 		articleService.deleteArticleById(id);
 		
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
@@ -79,8 +89,18 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/modify")
-	public String modify(Model model, int id) {
+	public String modify(HttpSession session, Model model, int id) {
 		Article article = articleService.getArticleById(id);
+		int loginedMemberId = 0;
+		
+		if (session.getAttribute("loginedMemberId") != null) {
+			loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		}
+		if (loginedMemberId == 0) {
+			model.addAttribute("msg", "로그인 후 이용해주세요.");
+			model.addAttribute("replaceUri", "/usr/member/login");
+			return "common/redirect";
+		}
 
 		model.addAttribute("article", article);
 
