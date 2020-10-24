@@ -1860,3 +1860,569 @@ java.sql.SQLException: Field 'memberId' doesn't have a default value
 2020-10-24 16:56:02 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
 2020-10-24 16:56:02 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2020-10-24 16:56:02 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2020-10-24 16:56:02 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 16:56:02 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 16:56:02 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 16:56:02 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 16:56:02 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 16:56:02 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 16:56:02 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 16:56:02 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 16:56:02 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 258 ms
+2020-10-24 16:56:03 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 16:56:03 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 16:56:03 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 16:56:03 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 16:56:03 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.425 seconds (JVM running for 74.565)
+2020-10-24 16:56:03 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 16:56:11 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-24 16:56:11 [INFO ] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-10-24 16:56:11 [INFO ] o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2020-10-24 16:56:11 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Starting...
+2020-10-24 16:56:11 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Start completed.
+2020-10-24 16:56:11 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 0 msec}
+2020-10-24 16:56:11 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|3        |
+|---------|
+
+2020-10-24 16:56:11 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-24 16:56:11 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:14 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. INSERT INTO article
+		 SET regDate = NOW(),
+			updateDate = NOW(),
+			memberId=1,
+			title='ddd',
+			`body`='ddd'
+ {executed in 7 msec}
+2020-10-24 16:56:14 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyStatement.getGeneratedKeys(ProxyStatement.java:230)
+11. getGeneratedKeys on query: INSERT INTO article
+		 SET regDate = NOW(),
+			updateDate = NOW(),
+			memberId=1,
+			title='ddd',
+			`body`='ddd'
+ {executed in 0 msec}
+2020-10-24 16:56:14 [INFO ] jdbc.resultsettable - 
+|--------------|
+|generated_key |
+|--------------|
+|4             |
+|--------------|
+
+2020-10-24 16:56:15 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		WHERE id = 4
+ {executed in 0 msec}
+2020-10-24 16:56:15 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:16 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 1 msec}
+2020-10-24 16:56:16 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|4        |
+|---------|
+
+2020-10-24 16:56:16 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 0 msec}
+2020-10-24 16:56:16 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 0 msec}
+2020-10-24 16:56:26 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|4        |
+|---------|
+
+2020-10-24 16:56:26 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-24 16:56:26 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:34 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM `member`
+		WHERE loginId = 'xxxx'
+ {executed in 1 msec}
+2020-10-24 16:56:34 [INFO ] jdbc.resultsettable - 
+|---|--------|-----------|-----|--------|--------|
+|id |regdate |updatedate |name |loginid |loginpw |
+|---|--------|-----------|-----|--------|--------|
+|---|--------|-----------|-----|--------|--------|
+
+2020-10-24 16:56:34 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. INSERT INTO `member`
+		 SET regDate=NOW(),
+		`updateDate`=NOW(),
+		`name`='xxxx',
+		loginId='xxxx',
+		loginPw='xxxx'
+ {executed in 5 msec}
+2020-10-24 16:56:34 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyStatement.getGeneratedKeys(ProxyStatement.java:230)
+11. getGeneratedKeys on query: INSERT INTO `member`
+		 SET regDate=NOW(),
+		`updateDate`=NOW(),
+		`name`='xxxx',
+		loginId='xxxx',
+		loginPw='xxxx'
+ {executed in 1 msec}
+2020-10-24 16:56:34 [INFO ] jdbc.resultsettable - 
+|--------------|
+|generated_key |
+|--------------|
+|2             |
+|--------------|
+
+2020-10-24 16:56:35 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 0 msec}
+2020-10-24 16:56:35 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|4        |
+|---------|
+
+2020-10-24 16:56:35 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-24 16:56:35 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:44 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		WHERE id = 4
+ {executed in 1 msec}
+2020-10-24 16:56:44 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:49 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM `member`
+		WHERE loginId = 'xxxx'
+ {executed in 1 msec}
+2020-10-24 16:56:49 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|-----|--------|--------|
+|id |regdate             |updatedate          |name |loginid |loginpw |
+|---|--------------------|--------------------|-----|--------|--------|
+|2  |2020-10-24 16:56:34 |2020-10-24 16:56:34 |xxxx |xxxx    |xxxx    |
+|---|--------------------|--------------------|-----|--------|--------|
+
+2020-10-24 16:56:50 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 1 msec}
+2020-10-24 16:56:50 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|4        |
+|---------|
+
+2020-10-24 16:56:50 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 0 msec}
+2020-10-24 16:56:50 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|4  |2020-10-24 16:56:14 |2020-10-24 16:56:14 |1        |ddd   |ddd  |
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:52 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. DELETE FROM article
+		WHERE id = 4
+ {executed in 187 msec}
+2020-10-24 16:56:52 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 1 msec}
+2020-10-24 16:56:52 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|3        |
+|---------|
+
+2020-10-24 16:56:52 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 0 msec}
+2020-10-24 16:56:52 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:56:54 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		WHERE id = 3
+ {executed in 1 msec}
+2020-10-24 16:56:54 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 16:59:14 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. INSERT INTO article
+		 SET regDate = NOW(),
+			updateDate = NOW(),
+			memberId=2,
+			title='dddddfads',
+			`body`='asdfa'
+ {executed in 98 msec}
+2020-10-24 16:59:14 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyStatement.getGeneratedKeys(ProxyStatement.java:230)
+11. getGeneratedKeys on query: INSERT INTO article
+		 SET regDate = NOW(),
+			updateDate = NOW(),
+			memberId=2,
+			title='dddddfads',
+			`body`='asdfa'
+ {executed in 0 msec}
+2020-10-24 16:59:14 [INFO ] jdbc.resultsettable - 
+|--------------|
+|generated_key |
+|--------------|
+|5             |
+|--------------|
+
+2020-10-24 16:59:15 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		WHERE id = 5
+ {executed in 1 msec}
+2020-10-24 16:59:15 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|----------|------|
+|id |regdate             |updatedate          |memberid |title     |body  |
+|---|--------------------|--------------------|---------|----------|------|
+|5  |2020-10-24 16:59:14 |2020-10-24 16:59:14 |2        |dddddfads |asdfa |
+|---|--------------------|--------------------|---------|----------|------|
+
+2020-10-24 16:59:18 [WARN ] o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: ""]
+2020-10-24 16:59:24 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 0 msec}
+2020-10-24 16:59:24 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|4        |
+|---------|
+
+2020-10-24 16:59:24 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-24 16:59:24 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|----------|------|
+|id |regdate             |updatedate          |memberid |title     |body  |
+|---|--------------------|--------------------|---------|----------|------|
+|5  |2020-10-24 16:59:14 |2020-10-24 16:59:14 |2        |dddddfads |asdfa |
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3       |내용3   |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2       |내용2   |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1       |내용1   |
+|---|--------------------|--------------------|---------|----------|------|
+
+2020-10-24 16:59:28 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. DELETE FROM article
+		WHERE id = 5
+ {executed in 10 msec}
+2020-10-24 16:59:29 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT COUNT(*)
+		FROM article
+ {executed in 0 msec}
+2020-10-24 16:59:29 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|3        |
+|---------|
+
+2020-10-24 16:59:29 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 0 msec}
+2020-10-24 16:59:29 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:00:04 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+11. SELECT *
+		FROM article
+		WHERE id = 3
+ {executed in 0 msec}
+2020-10-24 17:00:04 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:01:51 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:01:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+2020-10-24 17:01:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+2020-10-24 17:01:51 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 17:01:51 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 17:01:52 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 17:01:52 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:01:52 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 17:01:52 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 17:01:52 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 17:01:52 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 17:01:52 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 583 ms
+2020-10-24 17:01:52 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:01:52 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 17:01:52 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:01:52 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 17:01:52 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.762 seconds (JVM running for 423.864)
+2020-10-24 17:01:52 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 17:02:01 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:02 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 17:02:02 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 17:02:02 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 17:02:02 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:02 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 17:02:02 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 17:02:02 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 17:02:02 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 17:02:02 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 246 ms
+2020-10-24 17:02:02 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:02 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 17:02:02 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:02 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 17:02:02 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.392 seconds (JVM running for 433.901)
+2020-10-24 17:02:02 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 17:02:20 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:21 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 17:02:21 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 17:02:21 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 17:02:21 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:21 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 17:02:21 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 17:02:21 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 17:02:21 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 17:02:21 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 215 ms
+2020-10-24 17:02:21 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:21 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 17:02:21 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:21 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 17:02:21 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.352 seconds (JVM running for 452.877)
+2020-10-24 17:02:21 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 17:02:43 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:44 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 17:02:44 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 17:02:44 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 17:02:44 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:44 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 17:02:44 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 17:02:44 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 17:02:44 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 17:02:44 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 211 ms
+2020-10-24 17:02:44 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:02:44 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 17:02:44 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:02:44 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 17:02:44 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.345 seconds (JVM running for 475.845)
+2020-10-24 17:02:44 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 17:02:51 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-24 17:02:51 [INFO ] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-10-24 17:02:51 [INFO ] o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2020-10-24 17:02:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Starting...
+2020-10-24 17:02:51 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Start completed.
+2020-10-24 17:02:51 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+21. SELECT *
+		FROM article
+		WHERE id = 3
+ {executed in 1 msec}
+2020-10-24 17:02:51 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:03:39 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:03:39 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown initiated...
+2020-10-24 17:03:39 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-3 - Shutdown completed.
+2020-10-24 17:03:39 [INFO ] c.sbs.example.lolHi.LolHiApplication - Starting LolHiApplication on SBS-87 with PID 8252 (C:\work\sts-4.4.0.RELEASE-workspace\lolHi\target\classes started by SBS- in C:\work\sts-4.4.0.RELEASE-workspace\lolHi)
+2020-10-24 17:03:39 [INFO ] c.sbs.example.lolHi.LolHiApplication - The following profiles are active: local
+2020-10-24 17:03:39 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8085 (http)
+2020-10-24 17:03:39 [INFO ] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:03:39 [INFO ] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2020-10-24 17:03:39 [INFO ] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-10-24 17:03:39 [INFO ] org.apache.jasper.servlet.TldScanner - At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2020-10-24 17:03:39 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2020-10-24 17:03:39 [INFO ] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 215 ms
+2020-10-24 17:03:39 [INFO ] o.s.s.c.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2020-10-24 17:03:39 [INFO ] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2020-10-24 17:03:39 [INFO ] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8085"]
+2020-10-24 17:03:39 [INFO ] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8085 (http) with context path ''
+2020-10-24 17:03:39 [INFO ] c.sbs.example.lolHi.LolHiApplication - Started LolHiApplication in 0.36 seconds (JVM running for 530.945)
+2020-10-24 17:03:39 [INFO ] o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+2020-10-24 17:03:54 [INFO ] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-10-24 17:03:54 [INFO ] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2020-10-24 17:03:54 [INFO ] o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2020-10-24 17:03:54 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Starting...
+2020-10-24 17:03:54 [INFO ] com.zaxxer.hikari.HikariDataSource - HikariPool-4 - Start completed.
+2020-10-24 17:03:54 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT COUNT(*)
+		FROM article
+ {executed in 1 msec}
+2020-10-24 17:03:54 [INFO ] jdbc.resultsettable - 
+|---------|
+|count(*) |
+|---------|
+|3        |
+|---------|
+
+2020-10-24 17:03:54 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT *
+		FROM article
+		ORDER BY id DESC
+
+			LIMIT 0, 10
+ {executed in 1 msec}
+2020-10-24 17:03:54 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|2  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목2   |내용2  |
+|1  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목1   |내용1  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:03:56 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT *
+		FROM article
+		WHERE id = 3
+ {executed in 0 msec}
+2020-10-24 17:03:56 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:04:24 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. SELECT *
+		FROM article
+		WHERE id = 3
+ {executed in 1 msec}
+2020-10-24 17:04:24 [INFO ] jdbc.resultsettable - 
+|---|--------------------|--------------------|---------|------|-----|
+|id |regdate             |updatedate          |memberid |title |body |
+|---|--------------------|--------------------|---------|------|-----|
+|3  |2020-10-24 16:47:07 |2020-10-24 16:47:07 |1        |제목3   |내용3  |
+|---|--------------------|--------------------|---------|------|-----|
+
+2020-10-24 17:04:24 [DEBUG] jdbc.sqltiming -  com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+31. UPDATE article
+		 SET updateDate = NOW(),
+			title='xxx',
+			`body`='xxx'  
+		WHERE id = 3
+ {executed in 3 msec}
