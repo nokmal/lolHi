@@ -72,7 +72,8 @@ public class ArticleController {
 	@RequestMapping("/usr/article/doDelete")
 	public String doDelete(HttpSession session, int id, Model model) {
 		Article article = articleService.getArticleById(id);
-		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		int loginedMemberId = 0;
+		
 		if (session.getAttribute("loginedMemberId") == null) {
 			model.addAttribute("msg", "로그인 후 이용해주세요.");
 			model.addAttribute("replaceUri", "/usr/member/login");
