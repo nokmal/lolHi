@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,4 +97,24 @@ public class MemberController {
 		return "common/redirect";
 	}
 	
+	@RequestMapping("/usr/member/modify")
+	public String showModify() {
+		return "usr/member/modify";
+	}
+	
+	@RequestMapping("/usr/member/doModify")
+	public String doModify(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		param.put("id", loginedMemberId);
+		
+		//해킹방지
+		param.remove("loginId");
+		param.remove("loginPw");
+
+		memberService.modifyMember(param);
+		
+		model.addAttribute("msg", "회원정보가 수정되었습니다.");
+		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		return "common/redirect";
+	}
 }

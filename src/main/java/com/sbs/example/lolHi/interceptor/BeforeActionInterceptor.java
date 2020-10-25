@@ -28,7 +28,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 		if (session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-			loginedMember = memberService.getMemberByd(loginedMemberId);
+			loginedMember = memberService.getMemberById(loginedMemberId);
 		}
 		
 		req.setAttribute("isAjax", isAjax);
