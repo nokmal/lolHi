@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,15 +71,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doDelete")
-	public String doDelete(HttpSession session, int id, Model model) {
+	public String doDelete(HttpServletRequest req, int id, Model model) {
 		Article article = articleService.getArticleById(id);
-		int loginedMemberId = 0;
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
-		if (session.getAttribute("loginedMemberId") == null) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");
-			return "common/redirect";
-		}
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -93,18 +89,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/modify")
-	public String showModify(HttpSession session, Model model, int id) {
+	public String showModify(HttpServletRequest req, Model model, int id) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		Article article = articleService.getArticleById(id);
-		int loginedMemberId = 0;
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-		if (loginedMemberId == 0) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");
-			return "common/redirect";
-		}		
+		
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -117,19 +105,12 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/doModify")
-	public String doModify(HttpSession session, int id, String title, String body, Model model) {
+	public String doModify(HttpServletRequest req, int id, String title, String body, Model model) {
 		Article article = articleService.getArticleById(id);
 		articleService.modifyArticle(id, title, body);
-		int loginedMemberId = 0;
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-		if (loginedMemberId == 0) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");
-			return "common/redirect";
-		}
+		
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+		
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -142,33 +123,14 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/usr/article/write")
-	public String showWrite(HttpSession session, Model model) {
-		int loginedMemberId = 0;
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-		if (loginedMemberId == 0) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");
-			return "common/redirect";
-		}
+	public String showWrite(HttpServletRequest req, Model model) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		return "usr/article/write";
 	}
 
 	@RequestMapping("/usr/article/doWrite")
-	public String doWrite(HttpSession session, @RequestParam Map<String, Object> param, Model model) {
-		int loginedMemberId = 0;
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-
-		if (loginedMemberId == 0) {
-			model.addAttribute("msg", "로그인 후 이용해주세요.");
-			model.addAttribute("replaceUri", "/usr/member/login");
-			return "common/redirect";
-		}
+	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		
 		param.put("memberId", loginedMemberId);
 		int id = articleService.doWriteArticle(param);
