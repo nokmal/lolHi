@@ -16,9 +16,11 @@ public interface MemberDao {
 
 	void loginMember(String loginId, String loginPw);
 
-	Member getMemberByLoginId(@Param("loginId") String loginId);
+	Member getMemberByLoginId(String loginId);
 
 	List<Member> getMember(String loginId, String loginPw);
 	
 	Member getMemberById(@Param("id") int id);
+
+	void modifyMember(Map<String, Object> param);
 }
