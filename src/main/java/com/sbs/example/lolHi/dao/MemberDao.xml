@@ -6,30 +6,38 @@
 	<insert id="joinMember" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO `member`
 		<set>
-		regDate=NOW(),
-		`updateDate`=NOW(),
-		<if test="name != null">`name`=#{name},</if>
-		<if test="loginId != null">loginId=#{loginId},</if>
-		<if test="loginPw != null">loginPw=#{loginPw},</if>
+			regDate=NOW(),
+			`updateDate`=NOW(),
+			<if test="name != null">`name`=#{name},</if>
+			<if test="loginId != null">loginId=#{loginId},</if>
+			<if test="loginPw != null">loginPw=#{loginPw},</if>
 		</set>
 	</insert>
-	
+
 	<select id="getMember" resultType="Member">
 		SELECT *
 		FROM `member`
-		ORDER BY id DESC
+		ORDER BY
+		id DESC
 	</select>
-	
+
 	<select id="getMemberByLoginId" resultType="Member">
 		SELECT *
 		FROM `member`
 		WHERE loginId = #{loginId}
 	</select>
-	
+
 	<select id="loginMember" resultType="Member">
 		SELECT *
 		FROM `member`
-		WHERE loginId = #{loginId}
+		WHERE
+		loginId = #{loginId}
 	</select>
 	
+	<select id="getMemberById" resultType="Member">
+		SELECT *
+		FROM `member`
+		WHERE id = #{id}
+	</select>
+
 </mapper>
