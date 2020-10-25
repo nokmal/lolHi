@@ -20,6 +20,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	public boolean preHandle (HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
 		HttpSession session = req.getSession();
 		
+		boolean isAjax = false;
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
@@ -30,6 +31,7 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 			loginedMember = memberService.getMemberByd(loginedMemberId);
 		}
 		
+		req.setAttribute("isAjax", isAjax);
 		req.setAttribute("isLogined", isLogined);
 		req.setAttribute("loginedMemberId", loginedMemberId);
 		req.setAttribute("loginedMember", loginedMember);
