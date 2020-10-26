@@ -18,6 +18,8 @@
 		<br />
 		updateDate: ${article.updateDate}
 		<br />
+		작성자: ${article.extra.writer}
+		<br />
 		title: <a href="detail?id=${article.id}">${article.title}</a>
 		<br />
 		body: ${article.body}
