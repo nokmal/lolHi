@@ -40,7 +40,7 @@ public class ArticleController {
 			pageMenuEnd = totalPage;
 		}
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		List<Article> articles = articleService.getArticles(param);
+		List<Article> articles = articleService.getForPrintArticles(param);
 
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
@@ -55,7 +55,7 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 
 		model.addAttribute("article", article);
 
@@ -65,16 +65,16 @@ public class ArticleController {
 	@RequestMapping("/usr/article/detail2")
 	@ResponseBody
 	public Article showDetail2(Model model, int id) {
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 
 		return article;
 	}
 
 	@RequestMapping("/usr/article/doDelete")
 	public String doDelete(HttpServletRequest req, int id, Model model) {
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		
+
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -91,8 +91,8 @@ public class ArticleController {
 	@RequestMapping("/usr/article/modify")
 	public String showModify(HttpServletRequest req, Model model, int id) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		Article article = articleService.getArticleById(id);
-		
+		Article article = articleService.getForPrintArticleById(id);
+
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -106,11 +106,11 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/doModify")
 	public String doModify(HttpServletRequest req, int id, String title, String body, Model model) {
-		Article article = articleService.getArticleById(id);
+		Article article = articleService.getForPrintArticleById(id);
 		articleService.modifyArticle(id, title, body);
-		
+
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		
+
 		if (article.getMemberId() != loginedMemberId) {
 			model.addAttribute("msg", "권한이 없습니다.");
 			model.addAttribute("historyBack", true);
@@ -131,7 +131,7 @@ public class ArticleController {
 	@RequestMapping("/usr/article/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		
+
 		param.put("memberId", loginedMemberId);
 		int id = articleService.doWriteArticle(param);
 
