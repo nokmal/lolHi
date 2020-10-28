@@ -6,14 +6,13 @@
 <hr />
 <div>
 	<form action="doModify" method="post">
-		<div>번호 : ${loginedMember.id}</div>
+	<input type="hidden" name="loginedMember.id" value="${loginedMember.id}"/>
 		<div>가입날짜 : ${loginedMember.regDate}</div>
 		<div>로그인 아이디 : ${loginedMember.loginId}</div>
 		이름 : <input type="text" maxlength="30" placeholder="이름을 입력해주세요."
 			value="${loginedMember.name}" name="name" /><br />
 		<input type="submit" value="수정" />
 	</form>
-	<div>
 	<button>  <a onclick="history.back();">뒤로가기</a> </button>
 </div>
 </div>
