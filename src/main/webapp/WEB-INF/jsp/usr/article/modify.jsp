@@ -15,5 +15,6 @@
 			value="${article.body}" name="body" /><br /> <input type="submit"
 			value="수정" />
 	</form>
+	<button>  <a onclick="history.back();">뒤로가기</a> </button>
 </div>
 <%@ include file="../part/foot.jspf"%>
