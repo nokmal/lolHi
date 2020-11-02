@@ -14,22 +14,22 @@ CREATE TABLE article (
 
 # 게시물 데이터 생성
 INSERT INTO article
-SET regDate=NOW(),
-`updateDate`=NOW(),
-title='제목1',
-`body`='내용1';
+SET regDate = NOW(),
+`updateDate` = NOW(),
+title = '제목1',
+`body` = '내용1';
 
 INSERT INTO article
-SET regDate=NOW(),
-`updateDate`=NOW(),
-title='제목2',
-`body`='내용2';
+SET regDate = NOW(),
+`updateDate` = NOW(),
+title = '제목2',
+`body` = '내용2';
 
 INSERT INTO article
-SET regDate=NOW(),
-`updateDate`=NOW(),
-title='제목3',
-`body`='내용3';
+SET regDate = NOW(),
+`updateDate` = NOW(),
+title = '제목3',
+`body` = '내용3';
 
 # 회원 테이블 생성
 CREATE TABLE `member` (
@@ -45,12 +45,20 @@ CREATE TABLE `member` (
 INSERT INTO `member`
 SET  regDate = NOW(),
 updateDate = NOW(),
-`name` ='guest',
-loginId='guest',
-loginPw='guest';
+`name` = 'guest',
+loginId = 'guest',
+loginPw = 'guest';
 
 # 게시물 테이블에 memberId 칼럼 추가
 ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER updateDate;
 
 # 기존 게시물들의 작성자는 1번 회원으로 지정
 UPDATE article SET memberId = 1 WHERE memberId = 0;
+
+# article 테이블에 게시물 무작위 생성
+INSERT INTO article
+SET regDate = NOW(),
+`updateDate` = NOW(),
+title = CONCAT('제목_', RAND()),
+`body` = CONCAT('내용_', RAND()),
+memberId = IF(RAND() > 0.5, 2, 1);
