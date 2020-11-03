@@ -22,7 +22,6 @@
 			</div>
 		</form>
 	</div>
-
 	<c:forEach items="${articles}" var="article">
 		번호: <a href="detail?id=${article.id}">${article.id}</a>
 		<br />
@@ -48,20 +47,16 @@
 <div>
 	<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
 	<c:set var="goFirstBtnNeedToShow" value="${page > pageMenuArmSize + 1}" />
-
 	<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
 	<c:set var="goLastBtnNeedToShow" value="true" />
-
 	<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
 	<c:if test="${goFirstBtnNeedToShow}">
 		<a href="?page=1&searchKeyword=${param.searchKeyword}">◀</a>
 	</c:if>
-
 	<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
 		<c:set var="className" value="${i == page ? 'selected' : ''}" />
 		<a class="${className}"
 			href="?page=${i}&searchKeyword=${param.searchKeyword}">${i}</a>
-
 		<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
 		<c:if test="${i == totalPage}">
 			<c:set var="goLastBtnNeedToShow" value="false" />

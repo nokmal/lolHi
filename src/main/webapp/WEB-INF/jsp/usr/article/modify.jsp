@@ -10,11 +10,16 @@
 		<div>번호 : ${article.id}</div>
 		<div>작성날짜 : ${article.regDate}</div>
 		<div>수정날짜 : ${article.updateDate}</div>
-		제목 : <input type="text" maxlength="30" value="${article.title}"
-			name="title" /><br /> 내용 : <input type="text" maxlength="300"
-			value="${article.body}" name="body" /><br /> <input type="submit"
-			value="수정" />
+		제목 :
+		<input type="text" maxlength="30" value="${article.title}"
+			name="title" />
+		<br /> 내용 :
+		<input type="text" maxlength="300" value="${article.body}" name="body" />
+		<br />
+		<input type="submit" value="수정" />
 	</form>
-	<button>  <a onclick="history.back();">뒤로가기</a> </button>
+	<button>
+		<a onclick="history.back();">뒤로가기</a>
+	</button>
 </div>
 <%@ include file="../part/foot.jspf"%>

@@ -62,3 +62,14 @@ SET regDate = NOW(),
 title = CONCAT('제목_', RAND()),
 `body` = CONCAT('내용_', RAND()),
 memberId = IF(RAND() > 0.5, 2, 1);
+
+# 댓글 테이블 생성
+CREATE TABLE reply (
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    `updateDate` DATETIME NOT NULL,
+    `body` TEXT NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    relId INT(10) UNSIGNED NOT NULL,
+    relTypeCode CHAR(50) NOT NULL
+);

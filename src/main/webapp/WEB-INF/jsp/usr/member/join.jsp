@@ -42,12 +42,19 @@
 <form action="doJoin" method="POST"
 	onsubmit="joinFormSubmit(this); return false;">
 	<div>
-		이름 : <input type="text" maxlength="30" placeholder="이름을 입력해주세요."
-			name="name" /><br /> 아이디 : <input type="text" maxlength="10"
-			placeholder="아이디를 입력해주세요." name="loginId" /><br /> 비밀번호 : <input
-			type="password" maxlength="10" placeholder="비밀번호를 입력해주세요."
-			name="loginPw" /><br /> 비밀번호 확인 : <input type="password"
-			maxlength="10" placeholder="비밀번호를 재입력해주세요." name="loginPwConfirm" /><br />
+		이름 :
+		<input type="text" maxlength="30" placeholder="이름을 입력해주세요."
+			name="name" />
+		<br /> 아이디 :
+		<input type="text" maxlength="10" placeholder="아이디를 입력해주세요."
+			name="loginId" />
+		<br /> 비밀번호 :
+		<input type="password" maxlength="10" placeholder="비밀번호를 입력해주세요."
+			name="loginPw" />
+		<br /> 비밀번호 확인 :
+		<input type="password" maxlength="10" placeholder="비밀번호를 재입력해주세요."
+			name="loginPwConfirm" />
+		<br />
 		<input type="submit" value="가입" />
 </form>
 </div>
