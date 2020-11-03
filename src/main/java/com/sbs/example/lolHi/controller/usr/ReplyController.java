@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.example.lolHi.dto.Article;
+import com.sbs.example.lolHi.dto.Reply;
 import com.sbs.example.lolHi.service.ArticleService;
 import com.sbs.example.lolHi.service.Util;
 import com.sbs.example.lolHi.service.ReplyService;
@@ -28,7 +28,7 @@ public class ReplyController {
 	@RequestMapping("/usr/reply/doWrite")
 	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		String relTypeCode = (String)param.get("relTypeCode");
+		String relTypeCode = (String) param.get("relTypeCode");
 		int relId = Util.getAsInt(param.get("relId"));
 
 		param.put("memberId", loginedMemberId);
@@ -36,6 +36,32 @@ public class ReplyController {
 
 		model.addAttribute("msg", String.format("댓글이 작성되었습니다."));
 		model.addAttribute("replaceUri", String.format("/usr/%s/detail?id=%d", relTypeCode, relId));
+		return "common/redirect";
+	}
+
+	@RequestMapping("/usr/reply/doDelete")
+	public String doDelete(HttpServletRequest req, Model model, int id) {
+		int loginedMemberId = (int)req.getAttribute("loginedMemberId");
+		
+		Reply reply = replyService.getReply(id);
+		
+		if (reply == null) {
+			model.addAttribute("msg", "존재하지 않는 댓글입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		if (loginedMemberId != reply.getMemberId()) {
+			model.addAttribute("msg", "권한이 없습니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		replyService.deleteReplyById(id);
+		
+		
+		model.addAttribute("msg", String.format("댓글이 삭제되었습니다."));
+		model.addAttribute("replaceUri", String.format("/usr/%s/detail?id=%d", reply.getRelTypeCode(), reply.getRelId()));
 		return "common/redirect";
 	}
 }
