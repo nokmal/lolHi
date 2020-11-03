@@ -14,11 +14,26 @@
 			<if test="body != null">`body`=#{body},</if>
 		</set>
 	</insert>
+
 	<select id="getForPrintReplies" resultType="Reply">
-		SELECT * 
+		SELECT *
 		FROM reply
 		WHERE relTypeCode = #{relTypeCode}
 		AND relId = #{relId}
-		ORDER BY id DESC
+		ORDER BY
+		id DESC
 	</select>
+
+	<select id="getReply" resultType="Reply">
+		SELECT *
+		FROM reply
+		WHERE 1
+		AND id
+		= #{id}
+	</select>
+	
+	<delete id="deleteReplyById">
+		DELETE FROM reply
+		WHERE id = #{id}
+	</delete>
 </mapper>

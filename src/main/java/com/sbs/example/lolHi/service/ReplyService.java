@@ -24,4 +24,13 @@ public class ReplyService {
 	public List<Reply> getForPrintReplies(String relTypeCode, int relId) {
 		return replyDao.getForPrintReplies(relTypeCode, relId);
 	}
+
+	public Reply getReply(int id) {
+		return replyDao.getReply(id);
+	}
+
+	public void deleteReplyById(int id) {
+		replyDao.deleteReplyById(id);
+	}
+
 }
