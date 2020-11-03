@@ -23,4 +23,12 @@
 		<input type="submit" value="작성" />
 	</div>
 </form>
+<h2>댓글 리스트</h2>
+<c:forEach items="${replies}" var="reply">
+	<div>작성날짜: ${reply.regDate}</div>
+	<div>작성날짜: ${reply.updateDate}</div>
+	<div>작성자: ${reply.memberId}</div>
+	<div>내용: ${reply.body}</div>
+	<hr />
+</c:forEach>
 <%@ include file="../part/foot.jspf"%>
