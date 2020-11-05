@@ -27,7 +27,7 @@
 <c:forEach items="${replies}" var="reply">
 	<div>작성날짜: ${reply.regDate}</div>
 	<div>작성날짜: ${reply.updateDate}</div>
-	<div>작성자: ${reply.memberId}</div>
+	<div>작성자 : ${reply.extra.writer}</div>
 	<div>내용: ${reply.body}</div>
 	<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 			href="/usr/reply/doDelete?id=${reply.id}">삭제</a>
