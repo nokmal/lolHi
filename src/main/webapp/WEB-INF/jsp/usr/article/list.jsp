@@ -23,7 +23,7 @@
 		</form>
 	</div>
 	<c:forEach items="${articles}" var="article">
-		번호: <a href="detail?id=${article.id}">${article.id}</a>
+		번호: <a href="${detailUrl}">${article.id}</a>
 		<br />
 		regDate: ${article.regDate}
 		<br />
@@ -31,9 +31,9 @@
 		<br />
 		작성자: ${article.extra.writer}
 		<br />
-		title: <a href="detail?id=${article.id}">${article.title}</a>
+		제목: <a href="${detailUrl}">${article.title}</a>
 		<br />
-		body: ${article.body}
+		내용: ${article.body}
 		<br />
 		작업 :
 			<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
