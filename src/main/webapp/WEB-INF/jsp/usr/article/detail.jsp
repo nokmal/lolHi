@@ -9,6 +9,7 @@
 <div>&nbsp;&nbsp;&nbsp;제목: &nbsp;${article.title}</div>
 <div>&nbsp;&nbsp;&nbsp;내용: &nbsp;${article.body}</div>
 <div>${age}</div>
+<a href="${listUrl}">리스트</a>
 <a onclick="if (confirm ('삭제하시겠습니까?') == false) return false;"
 	href="doDelete?id=${article.id}">삭제</a>
 <a href="modify?id=${article.id}">수정</a>
