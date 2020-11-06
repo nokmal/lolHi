@@ -26,16 +26,20 @@ public class ReplyController {
 	private ReplyService replyService;
 
 	@RequestMapping("/usr/reply/doWrite")
-	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model) {
+	public String doWrite(HttpServletRequest req, @RequestParam Map<String, Object> param, Model model, String redirectUrl) {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		String relTypeCode = (String) param.get("relTypeCode");
 		int relId = Util.getAsInt(param.get("relId"));
+
+		if ( redirectUrl == null || redirectUrl.length() == 0 ) {
+			redirectUrl = String.format("/usr/%s/detail?id=%d", relTypeCode, relId);
+		}
 
 		param.put("memberId", loginedMemberId);
 		int id = replyService.write(param);
 
 		model.addAttribute("msg", String.format("댓글이 작성되었습니다."));
-		model.addAttribute("replaceUri", String.format("/usr/%s/detail?id=%d", relTypeCode, relId));
+		model.addAttribute("replaceUri", redirectUrl);
 		return "common/redirect";
 	}
 

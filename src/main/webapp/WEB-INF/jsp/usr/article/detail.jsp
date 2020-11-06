@@ -15,6 +15,7 @@
 <a href="modify?id=${article.id}">수정</a>
 <h2>댓글 작성</h2>
 <form action="/usr/reply/doWrite" method="POST">
+	<input type="hidden" name="redirectUrl" value="${currentUri}" />
 	<input type="hidden" name="relTypeCode" value="article" />
 	<input type="hidden" name="relId" value="${param.id}" />
 	<div>
@@ -31,7 +32,7 @@
 	<div>작성자 : ${reply.extra.writer}</div>
 	<div>내용: ${reply.body}</div>
 	<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-			href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}">삭제</a>
+		href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}">삭제</a>
 	<hr />
 </c:forEach>
 <%@ include file="../part/foot.jspf"%>
