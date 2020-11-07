@@ -33,6 +33,8 @@
 	<div>내용: ${reply.body}</div>
 	<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 		href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}">삭제</a>
+	<a
+		href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}">수정</a>
 	<hr />
 </c:forEach>
 <%@ include file="../part/foot.jspf"%>
