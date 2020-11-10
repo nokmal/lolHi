@@ -38,9 +38,13 @@
 		내용: ${article.body}
 		<br />
 		작업 :
+		<c:if test="${loginedMemberId == article.memberId}">
 			<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-			href="doDelete?id=${article.id}">삭제</a>
-		<a href="modify?id=${article.id}">수정</a>
+				href="doDelete?id=${article.id}">삭제</a>
+		</c:if>
+		<c:if test="${loginedMemberId == article.memberId}">
+			<a href="modify?id=${article.id}">수정</a>
+		</c:if>
 		<hr />
 </div>
 </c:forEach>
