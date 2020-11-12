@@ -10,11 +10,11 @@
 <div>&nbsp;&nbsp;&nbsp;내용: &nbsp;${article.body}</div>
 <div>${age}</div>
 <a href="${listUrl}">리스트</a>
-<c:if test="${loginedMemberId == article.memberId}">
+<c:if test="${article.extra.actorCanDelete}">
 	<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 		href="doDelete?id=${article.id}">삭제</a>
 </c:if>
-<c:if test="${loginedMemberId == article.memberId}">
+<c:if test="${article.extra.actorCanModify}">
 	<a href="modify?id=${article.id}">수정</a>
 </c:if>
 <h2>댓글 작성</h2>
