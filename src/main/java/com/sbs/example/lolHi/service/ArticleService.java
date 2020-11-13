@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.example.lolHi.dao.ArticleDao;
 import com.sbs.example.lolHi.dto.Article;
+import com.sbs.example.lolHi.dto.Board;
 import com.sbs.example.lolHi.dto.Member;
 
 @Service
@@ -102,5 +103,10 @@ public class ArticleService {
 	public int getTotalCount(Map<String, Object> param) {
 		return articleDao.getTotalCount(param);
 	}
+	
+	public Board getBoardByCode(String boardCode) {
+		return articleDao.getBoardByCode(boardCode);
+	}
+
 
 }

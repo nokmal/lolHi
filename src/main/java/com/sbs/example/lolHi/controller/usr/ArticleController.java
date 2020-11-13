@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.example.lolHi.dto.Article;
+import com.sbs.example.lolHi.dto.Board;
 import com.sbs.example.lolHi.dto.Member;
 import com.sbs.example.lolHi.dto.Reply;
 import com.sbs.example.lolHi.service.ArticleService;
@@ -26,9 +28,17 @@ public class ArticleController {
 	@Autowired
 	private ReplyService replyService;
 
-	@RequestMapping("/usr/article/list")
-	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param) {
-		Member loginedMember = (Member)req.getAttribute("loginedMember");
+	@RequestMapping("/usr/article-{boardCode}/list")
+	public String showList(HttpServletRequest req, Model model, @RequestParam Map<String, Object> param,
+			@PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+
+		if (board == null) {
+			model.addAttribute("msg", "존재하지 않는 게시판 입니다.");
+			model.addAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
@@ -45,8 +55,9 @@ public class ArticleController {
 			pageMenuEnd = totalPage;
 		}
 		param.put("itemsCountInAPage", itemsCountInAPage);
-		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);		
+		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
+		model.addAttribute("board", board);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("totalPage", totalPage);
 		model.addAttribute("pageMenuArmSize", pageMenuArmSize);
@@ -64,10 +75,10 @@ public class ArticleController {
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 
-		if ( listUrl == null ) {
+		if (listUrl == null) {
 			listUrl = "/usr/article/list";
 		}
-		
+
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
 		model.addAttribute("listUrl", listUrl);
@@ -77,7 +88,7 @@ public class ArticleController {
 
 	@RequestMapping("/usr/article/doDelete")
 	public String doDelete(HttpServletRequest req, int id, Model model) {
-		Member loginedMember = (Member)req.getAttribute("loginedMember");
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		if ((boolean) article.getExtra().get("actorCanDelete") == false) {
