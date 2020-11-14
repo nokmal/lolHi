@@ -50,7 +50,7 @@ public class MemberController {
 		int id = memberService.doJoinMember(param);
 
 		model.addAttribute("msg", String.format("환영합니다!"));
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		model.addAttribute("replaceUri", "/usr/article-free/list");
 		return "common/redirect"; 		
 	}
 	
@@ -84,7 +84,7 @@ public class MemberController {
 		session.setAttribute("loginedMemberId", member.getId());
 		
 		model.addAttribute("msg", String.format("%s님 환영합니다.", member.getName()));
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		model.addAttribute("replaceUri", String.format("/usr/article-free/list"));
 		return "common/redirect";
 	}
 	
@@ -93,7 +93,7 @@ public class MemberController {
 		session.removeAttribute("loginedMemberId");
 		
 		model.addAttribute("msg", String.format("로그아웃 되었습니다."));
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		model.addAttribute("replaceUri", "/usr/article-free/list");
 		return "common/redirect";
 	}
 	
@@ -114,7 +114,7 @@ public class MemberController {
 		memberService.modifyMember(param);
 		
 		model.addAttribute("msg", "회원정보가 수정되었습니다.");
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		model.addAttribute("replaceUri", "/usr/article-free/list");
 		return "common/redirect";
 	}
 }
