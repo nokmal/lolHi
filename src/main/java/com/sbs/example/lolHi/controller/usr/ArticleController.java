@@ -78,7 +78,7 @@ public class ArticleController {
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
 
 		if (listUrl == null) {
-			listUrl = "/usr/article/list";
+			listUrl = "/usr/article-free/list";
 		}
 
 		model.addAttribute("article", article);
@@ -102,7 +102,7 @@ public class ArticleController {
 		articleService.deleteArticleById(id);
 
 		model.addAttribute("msg", String.format("%d번 글을 삭제하였습니다.", id));
-		model.addAttribute("replaceUri", String.format("/usr/article/list"));
+		model.addAttribute("replaceUri", String.format("/usr/article-free/list"));
 		return "common/redirect";
 	}
 
