@@ -39,7 +39,7 @@ public class ArticleController {
 			return "common/redirect";
 		}
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
-		
+
 		param.put("boardId", board.getId());
 
 		int totalCount = articleService.getTotalCount(param);
@@ -71,8 +71,10 @@ public class ArticleController {
 		return "usr/article/list";
 	}
 
-	@RequestMapping("/usr/article/detail")
-	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl) {
+	@RequestMapping("/usr/article-{boardCode}/detail")
+	public String showDetail(HttpServletRequest req, Model model, int id, String listUrl,
+			@PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 		List<Reply> replies = replyService.getForPrintReplies(loginedMember, "article", id);
@@ -81,6 +83,7 @@ public class ArticleController {
 			listUrl = "/usr/article-free/list";
 		}
 
+		model.addAttribute("board", board);
 		model.addAttribute("article", article);
 		model.addAttribute("replies", replies);
 		model.addAttribute("listUrl", listUrl);
@@ -139,8 +142,10 @@ public class ArticleController {
 		return "common/redirect";
 	}
 
-	@RequestMapping("/usr/article-{boardCode}/write")
-	public String showWrite(HttpServletRequest req, Model model) {
+	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
+		Board board = articleService.getBoardByCode(boardCode);
+
+		model.addAttribute("board", board);
 		return "usr/article/write";
 	}
 

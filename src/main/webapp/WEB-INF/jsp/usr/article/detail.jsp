@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="title" value="게시물 상세페이지" />
+<c:set var="title" value="${board.name} 게시물 상세페이지" />
 <%@ include file="../part/head.jspf"%>
 <hr />
 <div>&nbsp;&nbsp;&nbsp;번호:&nbsp;${article.id}</div>
@@ -17,6 +17,7 @@
 <c:if test="${article.extra.actorCanModify}">
 	<a href="modify?id=${article.id}">수정</a>
 </c:if>
+<a href="write">글 작성</a>
 <h2>댓글 작성</h2>
 <form action="/usr/reply/doWrite" method="POST">
 	<input type="hidden" name="redirectUrl" value="${currentUri}" />
