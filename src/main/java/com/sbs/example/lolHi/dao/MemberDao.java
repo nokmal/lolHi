@@ -19,8 +19,10 @@ public interface MemberDao {
 	Member getMemberByLoginId(String loginId);
 
 	List<Member> getMember(String loginId, String loginPw);
-	
+
 	Member getMemberById(@Param("id") int id);
 
 	void modifyMember(Map<String, Object> param);
+
+	Member getMemberByNameAndEmail(@Param("name") String name, @Param("email") String email);
 }

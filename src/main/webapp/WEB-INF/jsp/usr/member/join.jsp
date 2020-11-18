@@ -35,6 +35,12 @@
 			form.loginPwConfirm.focus();
 			return;
 		}
+		form.email.value = form.email.value.trim();
+		if (form.email.value.length == 0) {
+			alert('이메일을 입력해주세요.');
+			form.email.focus();
+			return;
+		}
 		form.submit();
 		joinFormSubmitDone = true;
 	}
@@ -55,6 +61,11 @@
 		<input type="password" maxlength="10" placeholder="비밀번호를 재입력해주세요."
 			name="loginPwConfirm" />
 		<br />
+		<div>
+			이메일 :
+			<input type="email" maxlength="50" placeholder="이메일을 입력해주세요."
+				name="email" />
+		</div>
 		<input type="submit" value="가입" />
 </form>
 </div>
