@@ -53,6 +53,19 @@ public class MemberService {
 	}
 
 	public void modifyMember(Map<String, Object> param) {
-		memberDao.modifyMember(param);		
+		memberDao.modifyMember(param);
+	}
+
+	public boolean isJoinAvailableNameAndEmail(String name, String email) {
+		if (name == null || name.length() == 0) {
+			return false;
+		}
+		if (email == null || email.length() == 0) {
+			return false;
+		}
+
+		Member member = memberDao.getMemberByNameAndEmail(name, email);
+
+		return false;
 	}
 }

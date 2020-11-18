@@ -8,9 +8,10 @@
 		<set>
 			regDate=NOW(),
 			`updateDate`=NOW(),
-			<if test="name != null">`name`=#{name},</if>
-			<if test="loginId != null">loginId=#{loginId},</if>
-			<if test="loginPw != null">loginPw=#{loginPw},</if>
+			<if test="name != null">`name` = #{name},</if>
+			<if test="loginId != null">loginId = #{loginId},</if>
+			<if test="loginPw != null">loginPw = #{loginPw},</if>
+			<if test="email != null">email = #{email},</if>
 		</set>
 	</insert>
 
@@ -33,19 +34,29 @@
 		WHERE
 		loginId = #{loginId}
 	</select>
-	
+
 	<select id="getMemberById" resultType="Member">
 		SELECT *
 		FROM `member`
-		WHERE id = #{id}
+		WHERE
+		id = #{id}
 	</select>
-	
+
+	<select id="getMemberByNameAndEmail" resultType="Member">
+		SELECT *
+		FROM
+		member
+		WHERE `name` = #{name}
+		AND email = #{email}
+		LIMIT 1
+	</select>
+
 	<update id="modifyMember">
 		UPDATE `member`
 		<set>
 			updateDate = NOW(),
 			<if test="name != null">`name`=#{name},</if>
-		</set> 
+		</set>
 		WHERE id = #{id}
 	</update>
 </mapper>
