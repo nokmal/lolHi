@@ -130,3 +130,7 @@ ALTER TABLE `attr` ADD COLUMN `expireDate` DATETIME NULL AFTER `value`;
 # 기존 패스워드 암호화
 UPDATE `member`
 SET loginPw = SHA2(loginPw, 256);
+
+# 기존 인덱스 삭제후 유니크로 변경, 왜냐하면 attr의 특정 조합은 유니크여야 하기 때문에
+ALTER TABLE `attr` DROP INDEX relTypeCode;
+ALTER TABLE `attr` ADD UNIQUE INDEX (`relTypeCode`, `relId`, `typeCode`, `type2Code`);
