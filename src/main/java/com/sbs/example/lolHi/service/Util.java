@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.util.Map;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 
 public class Util {
 	public static int getAsInt(Object object) {
@@ -93,7 +94,7 @@ public class Util {
 		return getUriEncoded(getNewUri(uri, paramName, pramValue));
 
 	}
-	
+
 	public static String sha256(String base) {
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -112,5 +113,13 @@ public class Util {
 		} catch (Exception ex) {
 			return "";
 		}
+	}
+
+	public static String getDateStrLater(int seconds) {
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String dateStr = format1.format(System.currentTimeMillis() + seconds * 1000);
+
+		return dateStr;
 	}
 }
