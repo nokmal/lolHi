@@ -6,8 +6,8 @@
 <hr />
 <div>
 	<form action="doModify" method="post">
-		<input type="hidden" name="loginedMember.id"
-			value="${loginedMember.id}" />
+		<input type="hidden" name="checkLoginPwAuthCode"
+			value="${param.checkLoginPwAuthCode}" />
 		<div>가입날짜 : ${loginedMember.regDate}</div>
 		<div>로그인 아이디 : ${loginedMember.loginId}</div>
 		이름 :
