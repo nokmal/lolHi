@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.example.lolHi.dto.Article;
 import com.sbs.example.lolHi.dto.Board;
@@ -17,12 +16,12 @@ public interface ArticleDao {
 	Article getForPrintArticleById(@Param("id") int id);
 
 	void deleteArticleById(@Param("id") int id);
-	
-	void modifyArticle(@Param("id") int id, @Param("title")String title, @Param("body") String body);
 
-	void writeArticle(@RequestParam Map<String, Object> param);
+	void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
+
+	void writeArticle(Map<String, Object> param);
 
 	int getTotalCount(Map<String, Object> param);
-	
+
 	Board getBoardByCode(@Param("boardCode") String boardCode);
 }

@@ -1,18 +1,17 @@
 package com.sbs.example.lolHi.service;
 
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sbs.example.lolHi.dao.ArticleDao;
 import com.sbs.example.lolHi.dto.Article;
 import com.sbs.example.lolHi.dto.Board;
 import com.sbs.example.lolHi.dto.Member;
+import com.sbs.example.lolHi.util.Util;
 
 @Service
 public class ArticleService {
@@ -22,6 +21,7 @@ public class ArticleService {
 	public List<Article> getForPrintArticles(Member actorMember, Map<String, Object> param) {
 		int page = Util.getAsInt(param.get("page"), 1);
 
+		// 한 리스트에 나올 수 있는 게시물 게수
 		int itemsCountInAPage = Util.getAsInt(param.get("itemsCountInAPage"), 10);
 
 		if (itemsCountInAPage > 100) {
@@ -48,6 +48,7 @@ public class ArticleService {
 			if (actorMember != null) {
 				actorCanDelete = actorMember.getId() == article.getMemberId();
 			}
+
 			boolean actorCanModify = actorCanDelete;
 
 			article.getExtra().put("actorCanDelete", actorCanDelete);
@@ -59,7 +60,7 @@ public class ArticleService {
 
 	public Article getForPrintArticleById(Member actorMember, int id) {
 		Article article = articleDao.getForPrintArticleById(id);
-		
+
 		if (article == null) {
 			return null;
 		}
@@ -73,6 +74,7 @@ public class ArticleService {
 		if (actorMember != null) {
 			actorCanDelete = actorMember.getId() == article.getMemberId();
 		}
+
 		boolean actorCanModify = actorCanDelete;
 
 		article.getExtra().put("actorCanDelete", actorCanDelete);
@@ -89,12 +91,9 @@ public class ArticleService {
 		articleDao.modifyArticle(id, title, body);
 	}
 
-	public int doWriteArticle(@RequestParam Map<String, Object> param) {
+	public int writeArticle(Map<String, Object> param) {
 		articleDao.writeArticle(param);
 
-//		util로 형변환
-//		BigInteger bigIntId = (BigInteger)param.get("id");
-//		int id = bigIntId.intValue();
 		int id = Util.getAsInt(param.get("id"));
 
 		return id;
@@ -103,10 +102,9 @@ public class ArticleService {
 	public int getTotalCount(Map<String, Object> param) {
 		return articleDao.getTotalCount(param);
 	}
-	
+
 	public Board getBoardByCode(String boardCode) {
 		return articleDao.getBoardByCode(boardCode);
 	}
-
 
 }

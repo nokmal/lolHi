@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.sbs.example.lolHi.dao.ReplyDao;
 import com.sbs.example.lolHi.dto.Member;
 import com.sbs.example.lolHi.dto.Reply;
+import com.sbs.example.lolHi.util.Util;
 
 @Service
 public class ReplyService {
@@ -18,6 +19,7 @@ public class ReplyService {
 
 	public int write(Map<String, Object> param) {
 		replyDao.write(param);
+
 		int id = Util.getAsInt(param.get("id"));
 
 		return id;
@@ -57,7 +59,7 @@ public class ReplyService {
 	public void modify(Map<String, Object> param) {
 		replyDao.modify(param);
 	}
-	
+
 	public Reply getForPrintReply(Member actorMember, int id) {
 		Reply reply = getReply(id);
 
@@ -82,4 +84,5 @@ public class ReplyService {
 
 		return reply;
 	}
+
 }

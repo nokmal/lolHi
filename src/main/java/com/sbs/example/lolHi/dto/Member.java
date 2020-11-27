@@ -9,8 +9,8 @@ public class Member {
 	private int id;
 	private String regDate;
 	private String updateDate;
-	private String name;
 	private String loginId;
 	private String loginPw;
-	private String email;
+	private String name;
 }
+

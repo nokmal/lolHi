@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sbs.example.lolHi.dto.Article;
 import com.sbs.example.lolHi.dto.Board;
@@ -19,7 +18,7 @@ import com.sbs.example.lolHi.dto.Member;
 import com.sbs.example.lolHi.dto.Reply;
 import com.sbs.example.lolHi.service.ArticleService;
 import com.sbs.example.lolHi.service.ReplyService;
-import com.sbs.example.lolHi.service.Util;
+import com.sbs.example.lolHi.util.Util;
 
 @Controller
 public class ArticleController {
@@ -38,6 +37,7 @@ public class ArticleController {
 			model.addAttribute("historyBack", true);
 			return "common/redirect";
 		}
+
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
 
 		param.put("boardId", board.getId());
@@ -45,8 +45,7 @@ public class ArticleController {
 		int totalCount = articleService.getTotalCount(param);
 		int itemsCountInAPage = 10;
 		int totalPage = (int) Math.ceil(totalCount / (double) itemsCountInAPage);
-
-		int pageMenuArmSize = 5;
+		int pageMenuArmSize = 10;
 		int page = Util.getAsInt(param.get("page"), 1);
 		int pageMenuStart = page - pageMenuArmSize;
 		if (pageMenuStart < 1) {
@@ -56,6 +55,7 @@ public class ArticleController {
 		if (pageMenuEnd > totalPage) {
 			pageMenuEnd = totalPage;
 		}
+
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		List<Article> articles = articleService.getForPrintArticles(loginedMember, param);
 
@@ -94,6 +94,7 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/doDelete")
 	public String doDelete(HttpServletRequest req, int id, Model model, @PathVariable("boardCode") String boardCode) {
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		if ((boolean) article.getExtra().get("actorCanDelete") == false) {
@@ -114,6 +115,7 @@ public class ArticleController {
 		Board board = articleService.getBoardByCode(boardCode);
 
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
 
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
@@ -131,9 +133,10 @@ public class ArticleController {
 	@RequestMapping("/usr/article-{boardCode}/doModify")
 	public String doModify(HttpServletRequest req, int id, String title, String body, Model model,
 			@PathVariable("boardCode") String boardCode) {
+
 		Member loginedMember = (Member) req.getAttribute("loginedMember");
+
 		Article article = articleService.getForPrintArticleById(loginedMember, id);
-		articleService.modifyArticle(id, title, body);
 
 		if ((boolean) article.getExtra().get("actorCanModify") == false) {
 			model.addAttribute("msg", "권한이 없습니다.");
@@ -141,15 +144,19 @@ public class ArticleController {
 			return "common/redirect";
 		}
 
+		articleService.modifyArticle(id, title, body);
+
 		model.addAttribute("msg", String.format("%d번 글을 수정하였습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));
 		return "common/redirect";
 	}
 
+	@RequestMapping("/usr/article-{boardCode}/write")
 	public String showWrite(HttpServletRequest req, Model model, @PathVariable("boardCode") String boardCode) {
 		Board board = articleService.getBoardByCode(boardCode);
 
 		model.addAttribute("board", board);
+
 		return "usr/article/write";
 	}
 
@@ -161,7 +168,7 @@ public class ArticleController {
 
 		param.put("boardId", board.getId());
 		param.put("memberId", loginedMemberId);
-		int id = articleService.doWriteArticle(param);
+		int id = articleService.writeArticle(param);
 
 		model.addAttribute("msg", String.format("%d번 글이 생성되었습니다.", id));
 		model.addAttribute("replaceUri", String.format("/usr/article-%s/detail?id=%d", boardCode, id));

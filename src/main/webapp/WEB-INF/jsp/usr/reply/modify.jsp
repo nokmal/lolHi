@@ -19,7 +19,9 @@
 		<input type="submit" value="수정" />
 	</div>
 </form>
+
 <div>
 	<a href="${param.redirectUrl}">돌아가기</a>
 </div>
+
 <%@ include file="../part/foot.jspf"%>
