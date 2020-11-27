@@ -2,23 +2,23 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script>
-	var msg = '${msg}';
-	msg = msg.trim();
+var msg = '${msg}';
+msg = msg.trim();
 
-	if (msg.length > 0) {
-		alert(msg);
-	}
+if ( msg.length > 0 ) {
+	alert(msg);
+}
 
-	var historyBack = '${historyBack}' == 'true';
+var historyBack = '${historyBack}' == 'true';
 
-	if (historyBack) {
-		history.back();
-	}
+if ( historyBack ) {
+	history.back();
+}
 
-	var replaceUri = '${replaceUri}';
-	replaceUri = replaceUri.trim();
+var replaceUri = '${replaceUri}';
+replaceUri = replaceUri.trim();
 
-	if (replaceUri) {
-		location.replace(replaceUri);
-	}
+if ( replaceUri ) {
+	location.replace(replaceUri);
+}
 </script>

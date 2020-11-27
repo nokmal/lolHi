@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.sbs.example.lolHi.dto.Member;
 import com.sbs.example.lolHi.service.MemberService;
-import com.sbs.example.lolHi.service.Util;
+import com.sbs.example.lolHi.util.Util;
 
 @Component("beforeActionInterceptor") // 컴포넌트 이름 설정
 public class BeforeActionInterceptor implements HandlerInterceptor {
@@ -18,8 +18,9 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 	private MemberService memberService;
 
 	@Override
-	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler) throws Exception {
-		HttpSession session = req.getSession();
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		HttpSession session = request.getSession();
 
 		boolean isAjax = false;
 		boolean isLogined = false;
@@ -32,22 +33,22 @@ public class BeforeActionInterceptor implements HandlerInterceptor {
 			loginedMember = memberService.getMemberById(loginedMemberId);
 		}
 
-		req.setAttribute("isAjax", isAjax);
-		req.setAttribute("isLogined", isLogined);
-		req.setAttribute("loginedMemberId", loginedMemberId);
-		req.setAttribute("loginedMember", loginedMember);
-		String currentUri = req.getRequestURI();
+		request.setAttribute("isAjax", isAjax);
+		request.setAttribute("isLogined", isLogined);
+		request.setAttribute("loginedMemberId", loginedMemberId);
+		request.setAttribute("loginedMember", loginedMember);
+		
+		String currentUri = request.getRequestURI();
 
-		if (req.getQueryString() != null) {
-			currentUri += "?" + req.getQueryString();
+		if (request.getQueryString() != null) {
+			currentUri += "?" + request.getQueryString();
 		}
 
 		String encodedCurrentUri = Util.getUriEncoded(currentUri);
+		
+		request.setAttribute("currentUri", currentUri);
+		request.setAttribute("encodedCurrentUri", encodedCurrentUri);
 
-		req.setAttribute("currentUri", currentUri);
-		req.setAttribute("encodedCurrentUri", encodedCurrentUri);
-
-		return HandlerInterceptor.super.preHandle(req, resp, handler);
+		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
-
 }

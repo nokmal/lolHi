@@ -8,10 +8,18 @@
 		<set>
 			regDate = NOW(),
 			updateDate = NOW(),
-			<if test="memberId != null">memberId=#{memberId},</if>
-			<if test="relTypeCode != null">relTypeCode=#{relTypeCode},</if>
-			<if test="relId != null">relId=#{relId},</if>
-			<if test="body != null">`body`=#{body},</if>
+			<if test="relTypeCode != null">
+				relTypeCode = #{relTypeCode},
+			</if>
+			<if test="relId != null">
+				relId = #{relId},
+			</if>
+			<if test="body != null">
+				`body` = #{body},
+			</if>
+			<if test="memberId != null">
+				`memberId` = #{memberId},
+			</if>
 		</set>
 	</insert>
 
@@ -32,16 +40,15 @@
 	<select id="getReply" resultType="Reply">
 		SELECT *
 		FROM reply
-		WHERE 1
-		AND id
-		= #{id}
+		WHERE id =
+		#{id}
 	</select>
 
 	<delete id="deleteReplyById">
 		DELETE FROM reply
 		WHERE id = #{id}
 	</delete>
-
+	
 	<update id="modify">
 		UPDATE reply
 		<set>
@@ -67,3 +74,6 @@
 		</association>
 	</resultMap>
 </mapper>
+
+
+

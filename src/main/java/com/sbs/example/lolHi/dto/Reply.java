@@ -13,10 +13,10 @@ public class Reply {
 	private int id;
 	private String regDate;
 	private String updateDate;
-	private int memberId;
-	private String body;
 	private String relTypeCode;
 	private int relId;
+	private int memberId;
+	private String body;
 	
 	private Map<String, Object> extra;
 }

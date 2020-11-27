@@ -7,8 +7,7 @@
 		SELECT A.*,
 		M.name AS extra__writer
 		FROM article AS A
-		INNER JOIN `member`
-		AS M
+		INNER JOIN member AS M
 		ON A.memberId = M.id
 		WHERE 1
 		<if test="boardId != null">
@@ -19,8 +18,7 @@
 		</if>
 		ORDER BY A.id DESC
 		<if test="limitFrom != null and limitTake != null">
-			LIMIT
-			#{limitFrom}, #{limitTake}
+			LIMIT #{limitFrom}, #{limitTake}
 		</if>
 	</select>
 
@@ -45,7 +43,6 @@
 		ON A.memberId
 		= M.id
 		WHERE A.id = #{id}
-		ORDER BY A.id DESC
 	</select>
 
 	<delete id="deleteArticleById">
@@ -57,8 +54,12 @@
 		UPDATE article
 		<set>
 			updateDate = NOW(),
-			<if test="title != null">title=#{title},</if>
-			<if test="body != null">`body`=#{body},</if>
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="body != null">
+				`body` = #{body},
+			</if>
 		</set>
 		WHERE id = #{id}
 	</update>
@@ -69,20 +70,25 @@
 		<set>
 			regDate = NOW(),
 			updateDate = NOW(),
-			<if test="memberId != null">memberId=#{memberId},</if>
-			<if test="title != null">title=#{title},</if>
-			<if test="body != null">`body`=#{body},</if>
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="body != null">
+				`body` = #{body},
+			</if>
+			<if test="memberId != null">
+				`memberId` = #{memberId},
+			</if>
 			<if test="boardId != null">
 				`boardId` = #{boardId},
 			</if>
 		</set>
 	</insert>
-
+	
 	<select id="getBoardByCode" resultType="Board">
 		SELECT *
 		FROM board
-		WHERE
-		code = #{boardCode}
+		WHERE code = #{boardCode}
 	</select>
 
 	<resultMap type="Article" id="article">
@@ -93,6 +99,7 @@
 		<id property="body" column="body" />
 		<id property="boardId" column="boardId" />
 		<id property="memberId" column="memberId" />
+
 		<association property="extra" javaType="map">
 			<id property="writer" column="extra__writer" />
 		</association>
