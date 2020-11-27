@@ -11,26 +11,26 @@
 			return;
 		}
 
-		form.loginId.value = form.loginId.value.trim();
+		form.name.value = form.name.value.trim();
 
-		if (form.loginId.value.length == 0) {
-			alert('로그인 아이디를 입력해주세요.');
-			form.loginId.focus();
+		if (form.name.value.length == 0) {
+			alert('이름을 입력해주세요.');
+			form.name.focus();
 
 			return;
 		}
 
-		form.loginPw.value = form.loginPw.value.trim();
+		form.email.value = form.email.value.trim();
 
-		if (form.loginPw.value.length == 0) {
-			alert('로그인 비번을 입력해주세요.');
-			form.loginPw.focus();
+		if (form.email.value.length == 0) {
+			alert('이메일을 입력해주세요.');
+			form.email.focus();
 
 			return;
 		}
 
 		form.submit();
-		loginFormSubmitDone = true;
+		findLoginIdFormSubmitDone = true;
 	}
 </script>
 <form action="doFindLoginId" method="POST"
