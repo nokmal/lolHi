@@ -107,6 +107,7 @@ public class MemberController {
 	public String doLogout(HttpSession session, Model model) {
 		session.removeAttribute("loginedMemberId");
 
+		model.addAttribute("msg", String.format("로그아웃 되었습니다."));
 		model.addAttribute("replaceUri", "/usr/article-free/list");
 		return "common/redirect";
 	}
