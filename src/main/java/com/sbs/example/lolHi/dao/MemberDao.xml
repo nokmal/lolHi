@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sbs.example.lolHi.dao.MemberDao">
 	<insert id="join" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO member
+		INSERT INTO `member`
 		<set>
 			regDate = NOW(),
 			updateDate = NOW(),
@@ -25,13 +25,13 @@
 
 	<select id="getMemberByLoginId" resultType="Member">
 		SELECT *
-		FROM member
+		FROM `member`
 		WHERE loginId = #{loginId}
 	</select>
 
 	<select id="getMemberById" resultType="Member">
 		SELECT *
-		FROM member
+		FROM `member`
 		WHERE
 		id = #{id}
 	</select>
@@ -39,13 +39,11 @@
 	<select id="getMemberByNameAndEmail" resultType="Member">
 		SELECT *
 		FROM
-		member
+		`member`
 		WHERE `name` = #{name}
 		AND email = #{email}
 		LIMIT 1
 	</select>
-
-
 
 	<update id="modify">
 		UPDATE member
