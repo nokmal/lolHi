@@ -15,7 +15,7 @@
 		<c:if test="${isLogined}">
 			<span>${loginedMember.name}님 환영합니다.</span>
 			<a href="/usr/member/doLogout">로그아웃</a>
-			<a href="/usr/member/modify">회원정보수정</a>
+			<a href="/usr/member/checkLoginPw">회원정보수정</a>
 		</c:if>
 
 		<c:if test="${not isLogined}">
@@ -25,8 +25,8 @@
 			<a href="/usr/member/findLoginPw">로그인비번 찾기</a>
 		</c:if>
 
-		<a href="/usr/article-notice/write">공지사항 작성</a>
-		<a href="/usr/article-notice/list">공지사항 글 리스트</a>
-		<a href="/usr/article-free/write">자유게시글 작성</a>
-		<a href="/usr/article-free/list">자유 글 리스트</a>
+		<a href="/usr/article-notice/write">공지사항 작성</a> <a
+			href="/usr/article-notice/list">공지사항 글 리스트</a> <a
+			href="/usr/article-free/write">자유게시글 작성</a> <a
+			href="/usr/article-free/list">자유 글 리스트</a>
 	</div>
