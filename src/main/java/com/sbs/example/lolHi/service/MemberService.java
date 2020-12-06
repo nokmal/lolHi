@@ -22,6 +22,9 @@ public class MemberService {
 	@Value("${custom.siteMainUri}")
 	private String siteMainUri;
 
+	@Value("${custom.siteUrl}")
+	private String siteUrl;
+
 	@Value("${custom.siteLoginUri}")
 	private String siteLoginUri;
 
@@ -39,13 +42,22 @@ public class MemberService {
 
 		int id = Util.getAsInt(param.get("id"));
 
-		sendJoinCompleteMail((String) param.get("email"));
+		String authCode = genEmailAuthCode(id);
+
+		sendJoinCompleteMail((String) param.get("email"), authCode);
 
 		return id;
 	}
 
-	private void sendJoinCompleteMail(String email) {
-		String mailTitle = String.format("[%s] 가입이 완료되었습니다.", siteName);
+	private String genEmailAuthCode(int actorId) {
+		String authCode = UUID.randomUUID().toString();
+		attrService.setValue("member__" + actorId + "__extra__emailAuthCode", authCode, Util.getDateStrLater(60 * 60));
+
+		return authCode;
+	}
+
+	private void sendJoinCompleteMail(String email, String authCode) {
+		String mailTitle = String.format("[%s] 가입이 완료되었습니다. 이메일인증을 진행해주세요.", siteName);
 
 		StringBuilder mailBodySb = new StringBuilder();
 		mailBodySb.append("<h1>가입이 완료되었습니다.</h1>");
