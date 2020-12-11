@@ -133,4 +133,23 @@ SET loginPw = SHA2(loginPw, 256);
 
 # 기존 인덱스 삭제후 유니크로 변경, 왜냐하면 attr의 특정 조합은 유니크여야 하기 때문에
 ALTER TABLE `attr` DROP INDEX relTypeCode;
-ALTER TABLE `attr` ADD UNIQUE INDEX (`relTypeCode`, `relId`, `typeCode`, `type2Code`);  
+ALTER TABLE `attr` ADD UNIQUE INDEX (`relTypeCode`, `relId`, `typeCode`, `type2Code`); 
+
+# 1번, 2번 회원의 이메일을 인증처리 한다.
+INSERT INTO attr
+SET regDate = NOW(),
+updateDate = NOW(),
+relTypeCode = 'member',
+relId = 1,
+typeCode = 'extra',
+type2Code = 'authedEmail',
+`value` = '9aedarae@gmail.com';
+
+INSERT INTO attr
+SET regDate = NOW(),
+updateDate = NOW(),
+relTypeCode = 'member',
+relId = 2,
+typeCode = 'extra',
+type2Code = 'authedEmail',
+`value` = '9aedarae@gmail.com';
