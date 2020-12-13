@@ -16,7 +16,8 @@
 		제출 : <input type="submit" value="작성" />
 	</div>
 </form>
-<div>
-	<a href="list">리스트</a>
 </div>
+<div class="sub-menu-bar con-min-width">
+	<div class="con">
+		<a href="list">리스트</a>
 <%@ include file="../part/foot.jspf"%>
