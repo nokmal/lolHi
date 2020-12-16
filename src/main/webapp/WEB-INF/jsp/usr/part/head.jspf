@@ -30,123 +30,124 @@
 				</c:if>
 			</div>
 		</div>
-		<div class="top-bar con-min-width">
-			<div class="con flex flex-jc-sb height-100p">
-				<nav class="top-bar__menu-box-1">
-					<ul class="flex height-100p">
+	</div>
+	<div class="top-bar con-min-width">
+		<div class="con flex flex-jc-sb height-100p">
+			<nav class="top-bar__menu-box  top-bar__menu-box-1">
+				<ul class="flex height-100p">
+					<li>
+						<a href="/" class="height-100p flex flex-jc-c flex-ai-c">
+							<span>
+								<i class="fas fa-home"></i>
+							</span>
+							<span>Home</span>
+						</a>
+					</li>
+					<li>
+						<a href="/usr/article-notice/list"
+							class="height-100p flex flex-jc-c flex-ai-c">
+							<span>
+								<i class="fas fa-list"></i>
+							</span>
+							<span>공지사항</span>
+						</a>
+					</li>
+					<c:if test="${loginedMember.isAdmin()}">
 						<li>
-							<a href="/" class="height-100p flex flex-jc-c flex-ai-c">
-								<span>
-									<i class="fas fa-home"></i>
-								</span>
-								<span>Home</span>
-							</a>
-						</li>
-						<li>
-							<a href="/usr/article-notice/list"
-								class="height-100p flex flex-jc-c flex-ai-c">
-								<span>
-									<i class="fas fa-list"></i>
-								</span>
-								<span>공지사항</span>
-							</a>
-						</li>
-						<c:if test="${loginedMember.isAdmin()}">
-							<li>
-								<a href="/usr/article-notice/write"
-									class="height-100p flex flex-ai-c">
-									<span>
-										<i class="fas fa-pen-nib"></i>
-									</span>
-									<span>공지사항 쓰기</span>
-								</a>
-							</li>
-						</c:if>
-						<li>
-							<a href="/usr/article-free/list"
-								class="height-100p flex flex-jc-c flex-ai-c">
-								<span>
-									<i class="fas fa-list"></i>
-								</span>
-								<span>자유게시판</span>
-							</a>
-						</li>
-						<li>
-							<a href="/usr/article-free/write"
-								class="height-100p flex flex-jc-c flex-ai-c">
+							<a href="/usr/article-notice/write"
+								class="height-100p flex flex-ai-c">
 								<span>
 									<i class="fas fa-pen-nib"></i>
 								</span>
-								<span>자유 글쓰기</span>
+								<span>공지사항 쓰기</span>
 							</a>
 						</li>
-					</ul>
-				</nav>
+					</c:if>
+					<li>
+						<a href="/usr/article-free/list"
+							class="height-100p flex flex-jc-c flex-ai-c">
+							<span>
+								<i class="fas fa-list"></i>
+							</span>
+							<span>자유게시판</span>
+						</a>
+					</li>
+					<li>
+						<a href="/usr/article-free/write"
+							class="height-100p flex flex-jc-c flex-ai-c">
+							<span>
+								<i class="fas fa-pen-nib"></i>
+							</span>
+							<span>자유 글쓰기</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
 
-				<nav class="top-bar__menu-box-2">
-					<ul class="flex height-100p">
-						<c:if test="${not isLogined}">
-							<li>
-								<a href="/usr/member/login"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-sign-in-alt"></i>
-									</span>
-									<span>로그인</span>
-								</a>
-							</li>
-							<li>
-								<a href="/usr/member/join"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-user-plus"></i>
-									</span>
-									<span>회원가입</span>
-								</a>
-							</li>
-							<li>
-								<a href="/usr/member/findLoginId"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-user-lock"></i>
-									</span>
-									<span>아이디찾기</span>
-								</a>
-							</li>
-							<li>
-								<a href="/usr/member/findLoginPw"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-user-lock"></i>
-									</span>
-									<span>비밀번호 찾기</span>
-								</a>
-							</li>
-						</c:if>
-						<c:if test="${isLogined}">
-							<li>
-								<a href="/usr/member/checkLoginPw"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-user-edit"></i>
-									</span>
-									<span>정보수정</span>
-								</a>
-							</li>
-							<li>
-								<a href="/usr/member/doLogout"
-									class="height-100p flex flex-jc-c flex-ai-c">
-									<span>
-										<i class="fas fa-sign-out-alt"></i>
-									</span>
-									<span>로그아웃</span>
-								</a>
-							</li>
-						</c:if>
-					</ul>
-				</nav>
-			</div>
+			<nav class="top-bar__menu-box top-bar__menu-box-2">
+				<ul class="flex height-100p">
+					<c:if test="${not isLogined}">
+						<li>
+							<a href="/usr/member/login"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-sign-in-alt"></i>
+								</span>
+								<span>로그인</span>
+							</a>
+						</li>
+						<li>
+							<a href="/usr/member/join"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-user-plus"></i>
+								</span>
+								<span>회원가입</span>
+							</a>
+						</li>
+						<li>
+							<a href="/usr/member/findLoginId"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-user-lock"></i>
+								</span>
+								<span>아이디찾기</span>
+							</a>
+						</li>
+						<li>
+							<a href="/usr/member/findLoginPw"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-user-lock"></i>
+								</span>
+								<span>비밀번호 찾기</span>
+							</a>
+						</li>
+					</c:if>
+					<c:if test="${isLogined}">
+						<li>
+							<a href="/usr/member/checkLoginPw"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-user-edit"></i>
+								</span>
+								<span>정보수정</span>
+							</a>
+						</li>
+						<li>
+							<a href="/usr/member/doLogout"
+								class="height-100p flex flex-jc-c flex-ai-c">
+								<span>
+									<i class="fas fa-sign-out-alt"></i>
+								</span>
+								<span>로그아웃</span>
+							</a>
+						</li>
+					</c:if>
+				</ul>
+			</nav>
 		</div>
+	</div>
 
-		<div class="title-bar con-min-width"></div>
-		<h1 class="con">${title}</h1>
+	<div class="title-bar con-min-width"></div>
+	<h1 class="con">${title}</h1>
