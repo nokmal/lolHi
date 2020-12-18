@@ -12,6 +12,11 @@ a {
 	text-decoration: none;
 }
 
+a:hover {
+	color:blue;
+	text-decoration: underline;
+}
+
 /* 라이브러리 */
 .con {
 	margin-left: auto;
