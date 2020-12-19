@@ -206,3 +206,46 @@ html {
 	min-height: 300px;
 }
 /* 폼 박스 타입 1 끝 */
+
+/* 게시물 리스트 시작 */
+.article-list-box {
+	margin-top:30px;
+}
+
+.article-list-box__row {
+	display: flex;
+}
+
+.article-list-box__row > :nth-child(1) {
+	width:50px;
+}
+
+.article-list-box__row > :nth-child(2), 
+.article-list-box__row > :nth-child(3) {
+	width:180px;
+}
+
+.article-list-box__row > :nth-child(4) {
+	width:180px;
+}
+
+.article-list-box__row > :nth-child(5) {
+	flex:1 0 0;
+}
+
+.article-list-box__row > :nth-child(5) > a {
+	display: block;
+}
+
+.article-list-box__row > :nth-child(6) {
+	width:180px;
+}
+
+.article-list-box__head .article-list-box__row > div > span {
+	font-weight: bold;
+}
+
+.article-list-box__body .article-list-box__row {
+	margin-top:5px;
+}
+/* 게시물 리스트 끝 */
