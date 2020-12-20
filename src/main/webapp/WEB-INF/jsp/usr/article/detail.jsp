@@ -4,26 +4,71 @@
 <c:set var="title" value="${board.name} 게시물 상세페이지" />
 <%@ include file="../part/head.jspf"%>
 
-<div>번호 : ${article.id}</div>
+<div class="article-detail-box con-min-width">
+	<div class="con">
+		<div>
+			<div>
+				<span>번호</span>
+			</div>
+			<div>
+				<span>${article.id}</span>
+			</div>
+		</div>
+		<div>
+			<div>
+				<span>작성날짜</span>
+			</div>
+			<div>
+				<span>${article.regDate}</span>
+			</div>
+		</div>
+		<div>
+			<div>
+				<span>갱신날짜</span>
+			</div>
+			<div>
+				<span>${article.updateDate}</span>
+			</div>
+		</div>
+		<div>
+			<div>
+				<span>제목</span>
+			</div>
+			<div>
+				<span>${article.forPrintTitle}</span>
+			</div>
+		</div>
+		<div>
+			<div>
+				<span>작성자</span>
+			</div>
+			<div>
+				<span>${article.extra.writer}</span>
+			</div>
+		</div>
+		<div>
+			<div>${article.forPrintBody}</div>
+		</div>
+	</div>
+</div>
+<div class="sub-menu-bar con-min-width">
+	<div class="con">
+		<a href="${listUrl}">리스트</a>
+		<c:if test="${article.extra.actorCanDelete}">
+			<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+				href="doDelete?id=${article.id}">삭제</a>
+		</c:if>
+		<c:if test="${article.extra.actorCanModify}">
+			<a href="modify?id=${article.id}">수정</a>
+		</c:if>
+		<a href="write">글 작성</a>
+	</div>
+</div>
 
-<div>제목 : ${article.title}</div>
-
-<div>작성자 : ${article.extra.writer}</div>
-
-<div>내용 : ${article.body}</div>
-
-<div>${age}</div>
-
-<div>
-	<a href="${listUrl}">리스트</a>
-	<c:if test="${article.extra.actorCanDelete}">
-		<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-			href="doDelete?id=${article.id}">삭제</a>
-	</c:if>
-	<c:if test="${article.extra.actorCanModify}">
-		<a href="modify?id=${article.id}">수정</a>
-	</c:if>
-	<a href="write">글 작성</a>
+<div class="con-min-width margin-top-30px">
+	<div class="con">
+		<h2>댓글 작성</h2>
+	</div>
 </div>
 
 <h2>댓글 작성</h2>

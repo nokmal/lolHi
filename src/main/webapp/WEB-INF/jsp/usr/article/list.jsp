@@ -100,14 +100,7 @@
 				<a href="write">글쓰기</a>
 			</div>
 
-			<style>
-.selected {
-	color: red;
-}
-</style>
-
-			<h2>페이지</h2>
-			<div>
+			<div class="article-page-box con-min-width">
 				<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
 				<c:set var="goFirstBtnNeedToShow"
 					value="${page > pageMenuArmSize + 1}" />
@@ -125,7 +118,8 @@
 				</c:if>
 
 				<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
-					<c:set var="className" value="${i == page ? 'selected' : ''}" />
+					<c:set var="className"
+						value="${i == page ? 'article-page-box__page-btn--selected' : ''}" />
 					<a class="${className}"
 						href="?page=${i}&searchKeyword=${param.searchKeyword}">${i}</a>
 
