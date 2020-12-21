@@ -71,41 +71,81 @@
 	</div>
 </div>
 
-<h2>댓글 작성</h2>
+<div class="write-reply-box con-min-width">
+	<div class="con">
+		<form class="form-box-type-1" action="/usr/reply/doWrite"
+			method="POST">
+			<input type="hidden" name="redirectUrl" value="${currentUri}" />
+			<input type="hidden" name="relTypeCode" value="article" />
+			<input type="hidden" name="relId" value="${param.id}" />
 
-<form action="/usr/reply/doWrite" method="POST">
-	<input type="hidden" name="redirectUrl" value="${currentUri}" />
-	<input type="hidden" name="relTypeCode" value="article" />
-	<input type="hidden" name="relId" value="${param.id}" />
+			<div>
+				<div>
+					<span>내용</span>
+				</div>
+				<div>
+					<textarea maxlength="2000" name="body" placeholder="내용"></textarea>
+				</div>
+			</div>
 
-	<div>
-		<textarea rows="10" name="body" placeholder="내용"></textarea>
+			<div>
+				<div>작성</div>
+				<div>
+					<input type="submit" value="작성" />
+				</div>
+			</div>
+		</form>
 	</div>
+</div>
 
-	<div>
-		<input type="submit" value="작성" />
+
+<div class="article-reply-list-box con-min-width">
+	<div class="con">
+		<div class="aarticle-reply-list-box__head">
+			<div class="article-reply-list-box__row">
+				<div>
+					<span>번호</span>
+				</div>
+				<div>
+					<span>작성날짜</span>
+				</div>
+				<div>
+					<span>작성자</span>
+				</div>
+				<div>
+					<span>내용</span>
+				</div>
+				<div>
+					<span>작업</span>
+				</div>
+			</div>
+		</div>
+		<div class="article-reply-list-box__body">
+			<c:forEach items="${replies}" var="reply">
+				<div class="article-reply-list-box__row">
+					<div>
+						<span>${reply.id}</span>
+					</div>
+					<div>
+						<span>${reply.regDate}</span>
+					</div>
+					<div>
+						<span>${reply.extra.writer}</span>
+					</div>
+					<div>${reply.forPrintBody}</div>
+					<div>
+						<c:if test="${reply.extra.actorCanDelete}">
+							<a
+								href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}">삭제</a>
+						</c:if>
+						<c:if test="${reply.extra.actorCanModify}">
+							<a
+								href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}">수정</a>
+						</c:if>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
-</form>
-
-<h2>댓글 리스트</h2>
-
-<c:forEach items="${replies}" var="reply">
-	<div>번호 : ${reply.id}</div>
-	<div>작성날짜 : ${reply.regDate}</div>
-	<div>수정날짜 : ${reply.updateDate}</div>
-	<div>작성자 : ${reply.extra.writer}</div>
-	<div>내용 : ${reply.body}</div>
-	<div>
-		<c:if test="${reply.extra.actorCanDelete}">
-			<a
-				href="/usr/reply/doDelete?id=${reply.id}&redirectUrl=${encodedCurrentUri}">삭제</a>
-		</c:if>
-		<c:if test="${reply.extra.actorCanModify}">
-			<a
-				href="/usr/reply/modify?id=${reply.id}&redirectUrl=${encodedCurrentUri}">수정</a>
-		</c:if>
-	</div>
-	<hr />
-</c:forEach>
-
+</div>
 <%@ include file="../part/foot.jspf"%>

@@ -38,6 +38,7 @@
 		</form>
 	</div>
 </div>
+
 <div class="article-list-box con-min-width">
 	<div class="con">
 		<div class="article-list-box__head">
@@ -61,82 +62,86 @@
 					<span>작업</span>
 				</div>
 			</div>
-
 		</div>
+	</div>
 
-		<div class="article-list-box__body">
-			<c:forEach items="${articles}" var="article">
-				<c:set var="detailUrl"
-					value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
-				<div class="article-list-box__row">
-					<div>
-						<a href="${detailUrl}">${article.id}</a>
-					</div>
-					<div>
-						<span>${article.regDate}</span>
-					</div>
-					<div>
-						<span>${article.updateDate}</span>
-					</div>
-					<div>
-						<span> ${article.extra.writer} </span>
-					</div>
-					<div>
-						<a href="${detailUrl}">${article.forPrintTitle}</a>
-					</div>
-					<div>
-						<c:if test="${article.extra.actorCanDelete}">
-							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-								href="doDelete?id=${article.id}">삭제</a>
-						</c:if>
-						<c:if test="${article.extra.actorCanModify}">
-							<a href="modify?id=${article.id}">수정</a>
-						</c:if>
-					</div>
+	<div class="article-list-box__body">
+		<c:forEach items="${articles}" var="article">
+			<c:set var="detailUrl"
+				value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
+			<div class="article-list-box__row">
+				<div>
+					<a href="${detailUrl}">${article.id}</a>
 				</div>
-			</c:forEach>
-
-			<div>
-				<a href="write">글쓰기</a>
-			</div>
-
-			<div class="article-page-box con-min-width">
-				<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
-				<c:set var="goFirstBtnNeedToShow"
-					value="${page > pageMenuArmSize + 1}" />
-
-				<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
-				<c:set var="goLastBtnNeedToShow" value="true" />
-
-				<c:if test="${0 == totalPage}">
-					<c:set var="goFirstBtnNeedToShow" value="false" />
-				</c:if>
-
-				<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
-				<c:if test="${goFirstBtnNeedToShow}">
-					<a href="?page=1&searchKeyword=${param.searchKeyword}">◀</a>
-				</c:if>
-
-				<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
-					<c:set var="className"
-						value="${i == page ? 'article-page-box__page-btn--selected' : ''}" />
-					<a class="${className}"
-						href="?page=${i}&searchKeyword=${param.searchKeyword}">${i}</a>
-
-					<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
-					<c:if test="${i == totalPage}">
-						<c:set var="goLastBtnNeedToShow" value="false" />
+				<div>
+					<span>${article.regDate}</span>
+				</div>
+				<div>
+					<span>${article.updateDate}</span>
+				</div>
+				<div>
+					<span> ${article.extra.writer} </span>
+				</div>
+				<div>
+					<a href="${detailUrl}">${article.forPrintTitle}</a>
+				</div>
+				<div>
+					<c:if test="${article.extra.actorCanDelete}">
+						<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+							href="doDelete?id=${article.id}">삭제</a>
 					</c:if>
-				</c:forEach>
+					<c:if test="${article.extra.actorCanModify}">
+						<a href="modify?id=${article.id}">수정</a>
+					</c:if>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+</div>
 
-				<c:if test="${0 == totalPage}">
+<div class="sub-menu-bar con-min-width">
+	<div class="con">
+		<a href="write">글쓰기</a>
+
+		<div class="article-page-box con-min-width">
+			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+			<c:set var="goFirstBtnNeedToShow"
+				value="${page > pageMenuArmSize + 1}" />
+
+			<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 -->
+			<c:set var="goLastBtnNeedToShow" value="true" />
+
+			<c:if test="${0 == totalPage}">
+				<c:set var="goFirstBtnNeedToShow" value="false" />
+			</c:if>
+
+			<!-- 첫 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+			<c:if test="${goFirstBtnNeedToShow}">
+				<a href="?page=1&searchKeyword=${param.searchKeyword}">◀</a>
+			</c:if>
+
+			<c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
+				<c:set var="className"
+					value="${i == page ? 'article-page-box__page-btn--selected' : ''}" />
+				<a class="${className}"
+					href="?page=${i}&searchKeyword=${param.searchKeyword}">${i}</a>
+
+				<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출될 필요가 없다고 설정 -->
+				<c:if test="${i == totalPage}">
 					<c:set var="goLastBtnNeedToShow" value="false" />
 				</c:if>
+			</c:forEach>
 
-				<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
-				<c:if test="${goLastBtnNeedToShow}">
-					<a href="?page=${totalPage}&searchKeyword=${param.searchKeyword}">▶</a>
-				</c:if>
-			</div>
+			<c:if test="${0 == totalPage}">
+				<c:set var="goLastBtnNeedToShow" value="false" />
+			</c:if>
 
-			<%@ include file="../part/foot.jspf"%>
+			<!-- 마지막 페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+			<c:if test="${goLastBtnNeedToShow}">
+				<a href="?page=${totalPage}&searchKeyword=${param.searchKeyword}">▶</a>
+			</c:if>
+		</div>
+	</div>
+</div>
+
+<%@ include file="../part/foot.jspf"%>

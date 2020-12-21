@@ -274,3 +274,38 @@ html {
 	font-weight: bold;
 }
 /* 게시물 상세박스 끝 */
+
+/* 게시물 댓글 리스트 시작 */
+.article-reply-list-box {
+	margin-top: 10px;
+}
+
+.article-reply-list-box__row {
+	display: flex;
+}
+
+.article-reply-list-box__row>:nth-child(1) {
+	width: 50px;
+}
+
+.article-reply-list-box__row>:nth-child(2), .article-reply-list-box__row>:nth-child(3)
+	{
+	width: 180px;
+}
+
+.article-reply-list-box__row>:nth-child(4) {
+	flex: 1 0 0;
+}
+
+.article-reply-list-box__row>:nth-child(5) {
+	width: 180px;
+}
+
+.article-reply-list-box__head .article-reply-list-box__row>div>span {
+	font-weight: bold;
+}
+
+.article-reply-list-box__body .article-reply-list-box__row {
+	margin-top: 5px;
+}
+/* 게시물 댓글 리스트 끝 */
