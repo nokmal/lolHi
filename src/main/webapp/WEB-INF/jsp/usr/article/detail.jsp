@@ -47,13 +47,13 @@
 			</div>
 		</div>
 		<div>
-			<div>${article.forPrintBody}</div>
+			<div class="">${article.forPrintBody}</div>
 		</div>
 	</div>
 </div>
 <div class="sub-menu-bar con-min-width">
 	<div class="con">
-		<a href="${listUrl}">리스트</a>
+		<a href="${listUrl}">목록보기</a>
 		<c:if test="${article.extra.actorCanDelete}">
 			<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
 				href="doDelete?id=${article.id}">삭제</a>
@@ -130,16 +130,12 @@
 
 			<div>
 				<div>
-					<span>내용</span>
-				</div>
-				<div>
-					<textarea maxlength="2000" name="body" placeholder="내용"></textarea>
+					<textarea maxlength="2000" name="body" placeholder="댓글을 입력해주세요."></textarea>
 				</div>
 			</div>
 
 			<div>
-				<div>작성</div>
-				<div>
+				<div class="flex-jc-e reply-menu-bar">
 					<input type="submit" value="작성" />
 				</div>
 			</div>

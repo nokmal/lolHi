@@ -35,7 +35,7 @@ public class ReplyController {
 			redirectUrl = String.format("/usr/%s/detail?id=%d", relTypeCode, relId);
 		}
 
-		model.addAttribute("msg", String.format("%d번 댓글이 생성되었습니다.", id));
+		model.addAttribute("msg", String.format("댓글이 생성되었습니다."));
 		model.addAttribute("replaceUri", redirectUrl);
 		return "common/redirect";
 	}
@@ -64,7 +64,7 @@ public class ReplyController {
 
 		replyService.deleteReplyById(id);
 
-		model.addAttribute("msg", String.format("%d번 댓글이 삭제되었습니다.", id));
+		model.addAttribute("msg", String.format("댓글이 삭제되었습니다."));
 		model.addAttribute("replaceUri", redirectUrl);
 		return "common/redirect";
 	}

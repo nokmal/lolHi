@@ -167,6 +167,11 @@ html {
 /* 서브메뉴바 시작 */
 .sub-menu-bar {
 	margin-top: 20px;
+	text-align: right;
+}
+
+.sub-menu-bar>a {
+	padding: 10px;
 }
 
 /* 서브메뉴바 끝 */
@@ -277,6 +282,14 @@ html {
 .article-detail-box>div>div>div:first-child>span {
 	font-weight: bold;
 }
+
+.article-detail-box>div>div:last-child>div {
+	margin-top: 30px;
+	margin-left: 25px;
+	margin-right: 25px;
+	width: 1500px;
+}
+
 /* 게시물 상세박스 끝 */
 
 /* 게시물 댓글 리스트 시작 */
@@ -314,6 +327,17 @@ html {
 }
 /* 게시물 댓글 리스트 끝 */
 
+/* 댓글 */
+textarea::placeholder {
+	color: #d3d3d3;
+}
+
+.reply-menu-bar {
+	margin-right: 15px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
 /* footer */
 .f-right {
 	margin-top: 20px;
@@ -321,6 +345,7 @@ html {
 	height: 40px;
 	background-color: black;
 	color: white;
+	height: 40px;
 }
 
 .f-right ul {

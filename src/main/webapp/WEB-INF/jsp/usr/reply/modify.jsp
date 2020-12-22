@@ -15,12 +15,11 @@
 			name="body" value="${reply.body}" />
 	</div>
 	<div>
-		수정 :
 		<input type="submit" value="수정" />
 	</div>
 </form>
 
-<div>
+<div> 
 	<a href="${param.redirectUrl}">돌아가기</a>
 </div>
 
