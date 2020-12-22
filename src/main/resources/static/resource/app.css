@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-	color: blue;
+	font-weight: bold;
 	text-decoration: underline;
 }
 
@@ -317,6 +317,7 @@ html {
 /* footer */
 .f-right {
 	margin-top: 20px;
+	margin-bottom: 0px;
 	height: 40px;
 	background-color: black;
 	color: white;

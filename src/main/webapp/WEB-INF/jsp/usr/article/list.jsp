@@ -63,39 +63,38 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="article-list-box__body">
-		<c:forEach items="${articles}" var="article">
-			<c:set var="detailUrl"
-				value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
-			<div class="article-list-box__row">
-				<div>
-					<a href="${detailUrl}">${article.id}</a>
+		<div class="article-list-box__body">
+			<c:forEach items="${articles}" var="article">
+				<c:set var="detailUrl"
+					value="/usr/article-${board.code}/detail?id=${article.id}&listUrl=${encodedCurrentUri}" />
+				<div class="article-list-box__row">
+					<div>
+						<a href="${detailUrl}">${article.id}</a>
+					</div>
+					<div>
+						<span>${article.regDate}</span>
+					</div>
+					<div>
+						<span>${article.updateDate}</span>
+					</div>
+					<div>
+						<span> ${article.extra.writer} </span>
+					</div>
+					<div>
+						<a href="${detailUrl}">${article.forPrintTitle}</a>
+					</div>
+					<div>
+						<c:if test="${article.extra.actorCanDelete}">
+							<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
+								href="doDelete?id=${article.id}">삭제</a>
+						</c:if>
+						<c:if test="${article.extra.actorCanModify}">
+							<a href="modify?id=${article.id}">수정</a>
+						</c:if>
+					</div>
 				</div>
-				<div>
-					<span>${article.regDate}</span>
-				</div>
-				<div>
-					<span>${article.updateDate}</span>
-				</div>
-				<div>
-					<span> ${article.extra.writer} </span>
-				</div>
-				<div>
-					<a href="${detailUrl}">${article.forPrintTitle}</a>
-				</div>
-				<div>
-					<c:if test="${article.extra.actorCanDelete}">
-						<a onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;"
-							href="doDelete?id=${article.id}">삭제</a>
-					</c:if>
-					<c:if test="${article.extra.actorCanModify}">
-						<a href="modify?id=${article.id}">수정</a>
-					</c:if>
-				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </div>
 
