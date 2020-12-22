@@ -67,37 +67,9 @@
 
 <div class="con-min-width margin-top-30px">
 	<div class="con">
-		<h2>댓글 작성</h2>
+		<h2>댓글</h2>
 	</div>
 </div>
-
-<div class="write-reply-box con-min-width">
-	<div class="con">
-		<form class="form-box-type-1" action="/usr/reply/doWrite"
-			method="POST">
-			<input type="hidden" name="redirectUrl" value="${currentUri}" />
-			<input type="hidden" name="relTypeCode" value="article" />
-			<input type="hidden" name="relId" value="${param.id}" />
-
-			<div>
-				<div>
-					<span>내용</span>
-				</div>
-				<div>
-					<textarea maxlength="2000" name="body" placeholder="내용"></textarea>
-				</div>
-			</div>
-
-			<div>
-				<div>작성</div>
-				<div>
-					<input type="submit" value="작성" />
-				</div>
-			</div>
-		</form>
-	</div>
-</div>
-
 
 <div class="article-reply-list-box con-min-width">
 	<div class="con">
@@ -146,6 +118,32 @@
 				</div>
 			</c:forEach>
 		</div>
+	</div>
+</div>
+<div class="write-reply-box con-min-width">
+	<div class="con">
+		<form class="form-box-type-1" action="/usr/reply/doWrite"
+			method="POST">
+			<input type="hidden" name="redirectUrl" value="${currentUri}" />
+			<input type="hidden" name="relTypeCode" value="article" />
+			<input type="hidden" name="relId" value="${param.id}" />
+
+			<div>
+				<div>
+					<span>내용</span>
+				</div>
+				<div>
+					<textarea maxlength="2000" name="body" placeholder="내용"></textarea>
+				</div>
+			</div>
+
+			<div>
+				<div>작성</div>
+				<div>
+					<input type="submit" value="작성" />
+				</div>
+			</div>
+		</form>
 	</div>
 </div>
 <%@ include file="../part/foot.jspf"%>

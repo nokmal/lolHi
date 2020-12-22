@@ -1,2 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 </body>
+<div class="f-right con-min-width">
+	<div class="con height-100p flex">
+		<div class="flex-grow-1"></div>
+		<ul>
+			<li>
+				<a href="#" class="block"> 개인정보취급방침 </a>
+			</li>
+		</ul>
+	</div>
+</div>
 </html>

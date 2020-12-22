@@ -56,6 +56,10 @@ a:hover {
 	flex: 1 0 0;
 }
 
+.flex-1-0-1 {
+	flex: 1 0 1;
+}
+
 .flex-grow-1 {
 	flex-grow: 1;
 }
@@ -309,3 +313,36 @@ html {
 	margin-top: 5px;
 }
 /* 게시물 댓글 리스트 끝 */
+
+/* footer */
+.f-right {
+	margin-top: 20px;
+	height: 40px;
+	background-color: black;
+	color: white;
+}
+
+.f-right ul {
+	overflow: hidden;
+	margin-left: 20px;
+}
+
+.f-right li {
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 13px;
+	line-height: 40px;
+}
+
+.f-right li a {
+	padding: 0 10px;
+	font-weight: bold;
+	min-width: 100px;
+	border-radius: 10px 10px 0 0;
+}
+
+.f-right li:hover a {
+	color: gray;
+	text-decoration: none;
+}
