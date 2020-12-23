@@ -58,9 +58,6 @@
 				<div>
 					<span>제목</span>
 				</div>
-				<div>
-					<span>작업</span>
-				</div>
 			</div>
 		</div>
 		<div class="article-list-box__body">
