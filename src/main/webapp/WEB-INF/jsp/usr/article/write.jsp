@@ -33,8 +33,10 @@
 			</div>
 		</form>
 	</div>
-	<div class="sub-menu-bar con-min-width">
+</div>
+<div class="sub-menu-bar con-min-width">
 	<div class="con">
 		<a href="list">리스트</a>
 	</div>
-		<%@ include file="../part/foot.jspf"%>
+</div>
+<%@ include file="../part/foot.jspf"%>
