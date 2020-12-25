@@ -339,9 +339,6 @@ textarea::placeholder {
 }
 
 /* 댓글 수정 시작*/
-.reply-modify {
-	
-}
 
 .reply-modify-box>div {
 	display: flex;
