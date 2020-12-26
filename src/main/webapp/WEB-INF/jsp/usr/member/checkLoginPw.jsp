@@ -35,7 +35,7 @@
 					<input type="password" maxlength="30" placeholder="로그인 비번을 입력해주세요."
 						name="loginPw" />
 				</div>
-				<div class="bg-red">
+				<div>
 					<input type="submit" value="비밀번호 확인" />
 				</div>
 			</div>
