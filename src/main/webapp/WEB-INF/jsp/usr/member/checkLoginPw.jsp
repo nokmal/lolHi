@@ -24,15 +24,22 @@
 		checkLoginPwFormSubmitDone = true;
 	}
 </script>
-<form action="doCheckLoginPw" method="POST"
-	onsubmit="checkLoginPwFormSubmit(this); return false;">
-	<input type="hidden" name="redirectUrl" value="/usr/member/modify">
-	<div>
-		로그인 비번 : <input type="password" maxlength="30"
-			placeholder="로그인 비번을 입력해주세요." name="loginPw" />
+<div class="checkLoginPw con-min-width">
+	<div class="con">
+		<form class="checkLoginPw-box" action="doCheckLoginPw" method="POST"
+			onsubmit="checkLoginPwFormSubmit(this); return false;">
+			<div>
+				<input type="hidden" name="redirectUrl" value="/usr/member/modify">
+				<div>
+					로그인 비번 :
+					<input type="password" maxlength="30" placeholder="로그인 비번을 입력해주세요."
+						name="loginPw" />
+				</div>
+				<div class="bg-red">
+					<input type="submit" value="비밀번호 확인" />
+				</div>
+			</div>
+		</form>
 	</div>
-	<div>
-		비밀번호 확인 : <input type="submit" value="비밀번호 확인" />
-	</div>
-</form>
+</div>
 <%@ include file="../part/foot.jspf"%>

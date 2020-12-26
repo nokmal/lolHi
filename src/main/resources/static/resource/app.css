@@ -339,7 +339,6 @@ textarea::placeholder {
 }
 
 /* 댓글 수정 시작*/
-
 .reply-modify-box>div {
 	display: flex;
 	margin-top: 10px;
@@ -359,6 +358,19 @@ textarea::placeholder {
 	flex: 1 0 0;
 }
 /* 댓글 수정 끝*/
+
+/* 비밀번호 확인 시작 */
+.checkLoginPw {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.checkLoginPw>div>.checkLoginPw-box>div>div:last-child {
+	margin-top: 30px;
+	margin-right: 25px;
+	text-align: right;
+}
+/* 비밀번호 확인 끝 */
 
 /* footer */
 .f-right {
