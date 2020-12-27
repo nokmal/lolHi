@@ -372,6 +372,13 @@ textarea::placeholder {
 }
 /* 비밀번호 확인 끝 */
 
+/* 회원정보 수정 시작 */
+.member-modify>.history-back {
+	margin-top: 30px;
+	text-align: right;
+}
+/* 회원정보 수정 끝 */
+
 /* footer */
 .f-right {
 	margin-top: 20px;
