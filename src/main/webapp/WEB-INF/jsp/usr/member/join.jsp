@@ -125,4 +125,5 @@
 			</div>
 		</form>
 	</div>
-	<%@ include file="../part/foot.jspf"%>
+</div>
+<%@ include file="../part/foot.jspf"%>

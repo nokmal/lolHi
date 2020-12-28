@@ -73,7 +73,7 @@
 
 <div class="article-reply-list-box con-min-width">
 	<div class="con">
-		<div class="aarticle-reply-list-box__head">
+		<div class="article-reply-list-box__head">
 			<div class="article-reply-list-box__row">
 				<div>
 					<span>번호</span>

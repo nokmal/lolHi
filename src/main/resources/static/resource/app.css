@@ -373,10 +373,47 @@ textarea::placeholder {
 /* 비밀번호 확인 끝 */
 
 /* 회원정보 수정 시작 */
-.member-modify>.history-back {
-	margin-top: 30px;
-	text-align: right;
+.member-modify-box>div {
+	display: flex;
+	margin-top: 10px;
 }
+
+.member-modify-box>div>div:first-child {
+	min-width: 150px;
+	display: flex;
+	align-items: center;
+}
+
+.member-modify-box>div>div:first-child>span {
+	font-weight: bold;
+}
+
+.member-modify-box>div>div:last-child {
+	flex: 1 0 0;
+}
+
+.member-modify-box>div>div:last-child>input[type="text"] {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.member-modify-box>div:last-child>div {
+	min-width: 0;
+	display: block;
+	text-align: right;
+	margin-top: 15px;
+}
+
+/*.member-modify-box>div:last-child>div>input[type="submit"] {
+	background-color: blue;
+}
+
+.member-modify-box>div:last-child>div>button {
+	background-color: red;
+}*/
+
 /* 회원정보 수정 끝 */
 
 /* footer */

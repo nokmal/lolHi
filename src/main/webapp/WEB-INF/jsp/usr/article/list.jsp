@@ -4,8 +4,6 @@
 <c:set var="title" value="${board.name} 게시물 리스트" />
 <%@ include file="../part/head.jspf"%>
 
-
-
 <div class="articles-info-bar con-min-width">
 	<div class="con">
 		<span class="articles-info-bar__total-count">
