@@ -365,7 +365,7 @@ textarea::placeholder {
 	margin-bottom: 5px;
 }
 
-.checkLoginPw>div>.checkLoginPw-box>div>div:last-child {
+.checkLoginPw-box>div>div:last-child {
 	margin-top: 30px;
 	margin-right: 25px;
 	text-align: right;
