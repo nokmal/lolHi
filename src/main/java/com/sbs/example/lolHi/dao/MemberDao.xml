@@ -46,15 +46,11 @@
 	</select>
 
 	<update id="modify">
-		UPDATE member
+		UPDATE `member`
 		<set>
 			updateDate = NOW(),
-			<if test="name != null">
-				`name` = #{name},
-			</if>
-			<if test="loginPw != null">
-				loginPw = #{loginPw},
-			</if>
+			<if test="name != null and name.length() > 0">`name` = #{name},</if>
+			<if test="loginPw != null and loginPw.length() > 0">`loginPw` = #{loginPw},</if>
 		</set>
 		WHERE id = #{id}
 	</update>
