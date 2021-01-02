@@ -102,7 +102,7 @@
 				</div>
 				<div>
 					<input type="password" maxlength="15" placeholder="새 비밀번호를 입력해주세요."
-						name="loginPw" />
+						name="loginPw" value="${loginPw}"/>
 				</div>
 			</div>
 			<div>
