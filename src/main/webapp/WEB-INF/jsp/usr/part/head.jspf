@@ -23,7 +23,7 @@
 				<img src="/resource/img/logo_1.png">
 			</a>
 			<div class="flex-1-0-0 flex flex-ai-c flex-jc-e">
-				<c:if test="${isLogined}">
+				<c:if test="${isLogined}">${loginedMember.name}님 환영합니다. 
 					<div class="logo-bar__avatar">
 						<i class="far fa-user"></i>
 					</div>
